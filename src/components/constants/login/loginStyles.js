@@ -137,35 +137,45 @@ export const ErrorText = styled.span`
 `
 
 export const Footer = styled.div`
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-end;
     width: 100%;
-    height: 300px;
+    height: 200px;
+    gap: 80px;
     background-image: linear-gradient(to right, rgb(0,0,0), rgba(0,0,0,0.5));
-    img{ 
-        width: 300px;
-    }
-    ul{
-        list-style-type: none;
+
+    div{
+        width: 100%;
         display: flex;
         justify-content: center;
-        gap: 30px;
-        width: 30%;
-        margin-left: -50px;
-        margin-bottom: 155px;
+        align-items: center;
+        flex-direction: column;
 
-        li{
-            color: #fff;
-            font-family: "Josefin Sans", sans-serif;
-            font-size: 20px;
-            cursor: pointer;
+        img{ 
+            width: 300px;
+        }
+        ul{
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            width: 30%;
+
+            li{
+                color: #fff;
+                font-family: "Josefin Sans", sans-serif;
+                font-size: 20px;
+                cursor: pointer;
+            }
         }
     }
+    
     p{
         width: 100%;
-        height: 50px;
+        height: 60px;
         background-color: #000;
         color: #fff;
         font-size: 19px;

@@ -22,7 +22,7 @@ export default function UserAccount() {
   return (
     <Container>
         <TopBar>
-            <img src={Logo} alt="logo" />
+            <Link to='/'><img src={Logo} alt="logo" /></Link>
             <ul>
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/dashboard"><li onClick={()=> handleClick('Dashboard')}>Dashboard</li></Link>
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/investment"><li onClick={()=> handleClick('Investment Plan')}>Investment</li></Link>

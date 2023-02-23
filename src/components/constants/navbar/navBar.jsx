@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 function NavBar() {
   return (
     <Container>
-      <img src={Logo} alt="logo" />
+      <Link to='/'><img src={Logo} alt="logo" /></Link>
       <ul>
         <Link style={{ color: "#10221C", textDecoration: "none" }} to="/"><li>Home</li></Link>
         <Link style={{ color: "#10221C", textDecoration: "none" }} to="/about"><li>About Us</li></Link>

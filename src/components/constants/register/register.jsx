@@ -192,11 +192,13 @@ function Register() {
             </form>
         </Form>
         <Footer>
-            <img src={Logo} alt="logo" />
-            <ul>
-                <li>Privacy & Policy</li>
-                <li>Terms & Conditions</li>
-            </ul>
+            <div>
+                <img src={Logo} alt="logo" />
+                <ul>
+                    <li>Privacy & Policy</li>
+                    <li>Terms & Conditions</li>
+                </ul>
+            </div>
             <p>© 2023 <span>Fundtrex</span>. All rights reserved</p>
         </Footer>
     </>
