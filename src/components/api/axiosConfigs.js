@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const API = axios.create({
-  baseURL: "https://api.duduzili.com/api/v1/rest-auth/",
+  baseURL: "localhost:3001",
   headers: {
     "Content-Type": "application/json",
   },

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {TopBar, Container, Hero, Body, Footer} from './userAccountStyles.js'
 import Logo from '../../assets/logo.png'
 import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
@@ -13,14 +13,37 @@ import { DataContext } from '../../api/context.js';
 import ProfileSetting from './account/profileSetting.jsx';
 import TransferBalance from './account/transferBalance.jsx';
 import ChangePassword from './account/changePassword.jsx';
+import axios from 'axios';
+import DepositModal from './deposit/modal/modal';
+import WithdrawModal from './withdraw/modal/modal'
 
 export default function UserAccount() {
+    const userId = localStorage.getItem('userId')
+    const [depositModal, setDepositModal] = useState(false)
+    const [withdrawModal, setWithdrawModal] = useState(false)
   const {dispatch, state:{heading}} = DataContext()
   function handleClick(head){
     dispatch({ type: "HEAD", payload: head});
   }
+  useEffect(()=>{
+    const getUser = async ()=>{
+        const res = await axios.get(`http://localhost:8800/api/user/${userId}`).then((res)=>{
+            dispatch({type: "SINGLEUSER", payload: res.data})
+        })
+    }
+    getUser()
+  }, [])
+  const handleDepositModal = ()=>{
+    setDepositModal(!depositModal)
+  }
+  const handleWithdrawModal = ()=>{
+    setWithdrawModal(!withdrawModal)
+  }
+    
   return (
     <Container>
+        {depositModal && <DepositModal handleModal={handleDepositModal}/>}
+        {withdrawModal && <WithdrawModal handleModal={handleWithdrawModal}/>}
         <TopBar>
             <Link to='/'><img src={Logo} alt="logo" /></Link>
             <ul>
@@ -29,7 +52,7 @@ export default function UserAccount() {
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/deposit"><li onClick={()=> handleClick('Deposit Methods')}>Deposit</li></Link>
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/withdraw"><li onClick={()=> handleClick('Withdraw Money')}>Withdraw</li></Link>
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/transactions/deposit-wallet"><li onClick={()=> handleClick('Deposit Wallet Transactions')}>Transactions</li></Link>
-                <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/referrals"><li> 
+                <li> 
                     Referrals
                     <div className='dropDown'>
                         <ol>
@@ -37,8 +60,8 @@ export default function UserAccount() {
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/referral/commissions/deposit"><li onClick={()=> handleClick('Deposit Referral Commissions')}>Referral Commissions</li></Link>
                         </ol>
                     </div>
-                </li></Link>
-                <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/account"><li>
+                </li>
+                <li>
                     Account
                     <div className='dropDown'>
                         <ol>
@@ -51,7 +74,7 @@ export default function UserAccount() {
                             <li>Logout</li>
                         </ol>
                     </div>
-                </li></Link>
+                </li>
             </ul>
         </TopBar>
         <Hero>
@@ -61,8 +84,8 @@ export default function UserAccount() {
         <Body>
             <Routes>
                 <Route path='dashboard' element={<Dashboard/>} />
-                <Route path='deposit' element={<Deposit/>} />
-                <Route path='withdraw' element={<Withdraw/>} />
+                <Route path='deposit' element={<Deposit handleModal={handleDepositModal}/>} />
+                <Route path='withdraw' element={<Withdraw handleModal={handleWithdrawModal}/>} />
                 <Route path='transactions/*' element={<Transaction/>} />
                 <Route path='referral/users' element={<Users/>} />
                 <Route path='referral/commissions/*' element={<Commissions/>} />

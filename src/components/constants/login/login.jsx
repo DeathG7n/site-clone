@@ -1,11 +1,15 @@
 import React from 'react'
 import {Topbar, Form, Footer, Container, ErrorText} from './loginStyles'
 import Logo from '../../assets/logo.png'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useFormik } from 'formik';
 import { loginValidationSchema } from '../validationSchema';
+import axios from 'axios';
+import { DataContext } from '../../api/context';
 
 function Login() {
+    const history = useNavigate()
+    const {dispatch} = DataContext()
     const { values, handleChange, errors, touched, handleSubmit, handleBlur } = useFormik({
         initialValues: {
           user_name: '',
@@ -15,7 +19,15 @@ function Login() {
         validationSchema: loginValidationSchema,
     
         onSubmit: (values) => {
-            console.log(values)
+            const authUser = async ()=>{
+                const res = await axios.post("http://localhost:8800/api/auth/login", values).then((res)=>{
+                    console.log(res)
+                    history('/user/dashboard')
+                    dispatch({ type: "SINGLEUSER", payload: res.data})
+                    localStorage.setItem("userId", res.data?._id)
+                })
+            }
+            authUser()
         }
       });
   return (

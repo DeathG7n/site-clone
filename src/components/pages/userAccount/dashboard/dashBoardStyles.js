@@ -91,11 +91,28 @@ export const Container = styled.div`
                 padding: 12px 15px ;
                 font-size: 14px;
                 color: #000;
+                .wallet{
+                    font-size: 10px;
+                    width: fit-content;
+                    padding: 2px 8px;
+                    background-color: #08b7bf;
+                    border-radius: 5px;
+                }
+            }
+            .id{
+                color: #0000ff;
             }
             tbody td{
                 color: #fff;
                 background-color: #000;
                 border-radius: 10px;
+            }
+            .wallet{
+                font-size: 14px;
+                width: fit-content;
+                padding: 2px 5px;
+                background-color: light-blue;
+                border-radius: 5px;
             }
         }
     }

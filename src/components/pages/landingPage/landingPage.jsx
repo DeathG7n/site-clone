@@ -30,6 +30,7 @@ export default function LandingPage() {
   const [coins, setCoins] = useState([])
   const [crypto, setCrypto] = useState([])
   useEffect(()=> {
+
     axios({
       method: 'get',
       url: 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false',
@@ -51,6 +52,8 @@ export default function LandingPage() {
           setCrypto(response?.data)
         });  
   }, [])
+
+  
   
   return (
     <>
@@ -64,18 +67,21 @@ export default function LandingPage() {
           </Button>
           <Table>
             <thead>
-              <th>#</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Changes 24h</th>
-              <th>Market CAP</th>
-              <th>Volume</th>
-              <th>Supply</th>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Changes 24h</th>
+                <th>Market CAP</th>
+                <th>Volume</th>
+                <th>Supply</th>
+              </tr>
+              
             </thead>
             <tbody>
               {coins?.map(coin=>{
                 return(
-                  <tr>
+                  <tr key={coin?.id}>
                     <td>{coin?.market_cap_rank}</td>
                     <td>
                       <div>

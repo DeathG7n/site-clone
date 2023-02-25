@@ -7,17 +7,21 @@ import ViewInArRoundedIcon from '@mui/icons-material/ViewInArRounded';
 import CloudDownloadRoundedIcon from '@mui/icons-material/CloudDownloadRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import { DataContext } from '../../../api/context.js';
+import axios from 'axios'
 
 export default function Dashboard() {
+  const {state:{singleUser}} = DataContext()
+  console.log(singleUser)
   return (
     <Container>
         <p>Referral Link</p>
-        <div className='link'>https://fundtrexcooperations.com/register/DeathG7n <span><ContentCopyRoundedIcon/></span></div>
+        <div className='link'>https://fundtrexcooperations.com/register/{singleUser?.user_name} <span><ContentCopyRoundedIcon/></span></div>
         <section>
             <div className='box'>
                 <div className='value'>
                     <p>Deposit Wallet Balance</p>
-                    <h2>$5</h2>
+                    <h2>${singleUser?.dashboard?.depositWalletBalance}</h2>
                 </div>
                 <div className='sym'>
                     <div>
@@ -28,7 +32,7 @@ export default function Dashboard() {
             <div className='box'>
                 <div className='value'>
                     <p>Interest Wallet Balance</p>
-                    <h2>$5</h2>
+                    <h2>${singleUser?.dashboard?.interestWalletBalance}</h2>
                 </div>
                 <div className='sym'>
                     <div>
@@ -39,7 +43,7 @@ export default function Dashboard() {
             <div className='box'>
                 <div className='value'>
                     <p>Total Invest</p>
-                    <h2>$5</h2>
+                    <h2>${singleUser?.dashboard?.totalInvest}</h2>
                 </div>
                 <div className='sym'>
                     <div>
@@ -50,7 +54,7 @@ export default function Dashboard() {
             <div className='box'>
                 <div className='value'>
                     <p>Total Deposit</p>
-                    <h2>$5</h2>
+                    <h2>${singleUser?.dashboard?.totalDeposit}</h2>
                 </div>
                 <div className='sym'>
                     <div>
@@ -61,7 +65,7 @@ export default function Dashboard() {
             <div className='box'>
                 <div className='value'>
                     <p>Total Withdraw</p>
-                    <h2>$5</h2>
+                    <h2>${singleUser?.dashboard?.totalWithdraw}</h2>
                 </div>
                 <div className='sym'>
                     <div>
@@ -72,7 +76,7 @@ export default function Dashboard() {
             <div className='box'>
                 <div className='value'>
                     <p>Referral Earnings</p>
-                    <h2>$5</h2>
+                    <h2>${singleUser?.dashboard?.referralEarnings}</h2>
                 </div>
                 <div className='sym'>
                     <div>
@@ -82,14 +86,6 @@ export default function Dashboard() {
             </div>
             <table>
                 <thead>
-                    <td>Date</td>
-                    <td>Transaction ID</td>
-                    <td>Amount</td>
-                    <td>Wallet</td>
-                    <td>Details</td>
-                    <td>Post Balance</td>
-                </thead>
-                <tbody>
                     <tr>
                         <td>Date</td>
                         <td>Transaction ID</td>
@@ -98,6 +94,20 @@ export default function Dashboard() {
                         <td>Details</td>
                         <td>Post Balance</td>
                     </tr>
+                </thead>
+                <tbody>
+                    {singleUser?.dashboard?.details?.map(item=>{
+                        return(
+                            <tr>
+                                 <td>{item?.date ? item?.date : singleUser?.createdAt.substring(10,0)}</td>
+                                 <td className='id'>{item?.transactionID ? item?.transactionID : singleUser?._id.substring(12).toUpperCase()}</td>
+                                 <td>+${item?.amount}</td>
+                                 <td><div className='wallet'>{item?.wallet}</div></td>
+                                 <td>{item?.desc}</td>
+                                 <td>{item?.postBalance}</td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </section>

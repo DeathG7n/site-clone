@@ -1,27 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import {Topbar, Form, Footer, ErrorText} from './registerStyles'
 import Logo from '../../assets/logo.png'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useFormik } from 'formik';
 import { signUpValidationSchema } from "../../constants/validationSchema";
 import axios from 'axios';
+import { countries, codes } from '../../api/countries';
 
 function Register() {
-    const [countryCode, setCountryCode] = useState('93')
-    const [countries, setCountries] = useState([])
-    useEffect(()=>{
-       axios({
-        method: 'get',
-        url: `https://restcountries.com/v2/all`,
-        headers: {
-          "Content-Type": "application/json",
-        }
-      })
-        .then(function (response) {
-          console.log(response?.data)
-          setCountries(response?.data)
-        }); 
-    }, [])
+    const history = useNavigate()
+    const [countryCode, setCountryCode] = useState({
+        phone_code: 93
+    })
     
     const { values, handleChange, errors, touched, handleSubmit, handleBlur } = useFormik({
         initialValues: {
@@ -32,22 +22,28 @@ function Register() {
           last_name: '',
           user_name: '',
           country: '',
-          agree: ""
+          code: '',
         },
     
         validationSchema: signUpValidationSchema,
     
         onSubmit: (values) => {
+            values.code = countryCode?.phone_code
             console.log(values)
+            const createUser = async ()=>{
+                const res = await axios.post("http://localhost:8800/api/auth/register", values).then((res)=>{
+                    console.log(res)
+                    history('/login')
+                })
+            }
+            createUser()
         }
-      });
-
-    console.log(touched)
-    // function handleCountryCode(){
-    //     const country = localStorage.getItem("country")
-    //     console.log(country)
-    //     setCountryCode(JSON.parse(localStorage.getItem("country"))?.code)
-    // }
+    });
+    function handleCountryCode(){
+        const code = values?.country && codes.find(item => item?.country_name === values?.country)
+        setCountryCode(code)
+        console.log(code)
+    }
   return (
     <>
         <Topbar>
@@ -92,16 +88,17 @@ function Register() {
                     id="countries"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.country}
+                    value={countryCode + values.country}
+                    onClick={handleCountryCode}
                     >
                     
                     {countries?.map((country, id)=>{
                         return(
                             <option 
-                                value={country?.name}
+                                value={country}
                                 key={id}
                             >
-                                {country?.name}
+                                {country}
                             </option>
                         )
                     })}
@@ -111,9 +108,7 @@ function Register() {
                 <div>
                     <span 
                         className='country-code'
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    >+{countryCode}</span>
+                    >+{countryCode.phone_code}</span>
                     <input 
                         name='mobile'
                         type="number" 

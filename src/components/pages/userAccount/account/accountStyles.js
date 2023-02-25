@@ -12,6 +12,7 @@ export const ProfileImg = styled.img`
     height: 200px;
     border: 5px solid;
     border-radius: 50%;
+    object-fit: cover;
 `
 
 export const Form = styled.form`
@@ -161,6 +162,11 @@ export const Form = styled.form`
                 color: #fff;
             }
         }
+        input{
+            ::placeholder{
+                color: #fff;
+            }
+        }
     }
     .details{
         width: 100%;
@@ -190,6 +196,11 @@ export const Form = styled.form`
                 border: 1px solid #f64803;
                 text-indent: 20px;
                 font-size: 17px;
+                color: #fff;
+            }
+        }
+        input{
+            ::placeholder{
                 color: #fff;
             }
         }

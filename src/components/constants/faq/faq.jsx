@@ -10,16 +10,16 @@ export default function Faq() {
             <h1>Frequently Asked Questions</h1>
             <span>
               <section>
-                {faqArray1.map(faq=>{
+                {faqArray1.map((faq, id)=>{
                   return(
-                    <Card item={faq}/>
+                    <Card item={faq} key={id}/>
                   )
                 })}
               </section>
               <section>
-                {faqArray2.map(faq=>{
+                {faqArray2.map((faq, id)=>{
                   return(
-                    <Card item={faq}/>
+                    <Card item={faq} key={id}/>
                   )
                 })}
               </section>

@@ -1,73 +1,133 @@
-import React from 'react'
+import React, {useReducer} from 'react'
 import {Container, ProfileImg, Form} from './accountStyles'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { DataContext } from '../../../api/context';
+import Placeholder from '../../../assets/image.jpeg'
+import axios from 'axios';
 
 export default function ProfileSetting() {
+    const userId = localStorage.getItem('userId')
+    const {state: { singleUser}} = DataContext()
+    console.log(singleUser)
+    const formReducer = (state, event) => {
+        return {
+          ...state,
+          [event.name]: event.value,
+        };
+      };
+    const [formData, setFormData] = useReducer(formReducer, {userId : userId })
+
+    const handleChange = (e) => {
+        let event = e.target;
+        const fileType = event.type === "file";
+    
+        setFormData({
+          name: event.name,
+          value: fileType ? event.files[0] : event.value,
+        });
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const updateUser = async ()=>{
+            const res = await axios.put((`http://localhost:8800/api/user/${singleUser?._id}`), formData)
+            .then((res)=>{
+                console.log(res)
+                window.location.reload(true)
+            })
+        }
+        updateUser()
+    }
+    console.log(formData)
   return (
     <Container>
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <section className='profile-name'>
                 <div className='profileImg'>
                     <input
                         type="file"
                         className="photo"
-                        name="photo"
+                        name="profile_picture"
                         id="photo"
+                        onChange={handleChange}
                     />
                     <label for="photo">
-                        <ProfileImg src='' alt='profileImg'/>
-                        {/* <img
-                            src={showImage && formData.photo? URL.createObjectURL(formData.photo): imageIcon}
-                            alt="image icon"
-                            onClick={handleShow}
-                        /> */}
+                        <ProfileImg 
+                            src={formData.profile_picture ? URL.createObjectURL(formData.profile_picture): singleUser?.profile_picture || Placeholder} 
+                            alt='profileImg'/>
                         <div className='edit'><EditOutlinedIcon sx={{color: "#555"}}/></div>
                     </label>
                 </div>
                 
                 <div className='profile'>
                     <div className='box-name'>
-                        <label htmlFor="">First Name</label>
-                        <input type="text" placeholder='First Name' value='Ifeanyichukwu'/>
+                        <label htmlFor="first_name">First Name</label>
+                        <input 
+                            name='first_name'
+                            type="text" 
+                            placeholder={singleUser?.first_name || 'First Name' }
+                            onChange={handleChange}/>
                     </div>
                     <div className='box-name'>
-                        <label htmlFor="">Last Name</label>
-                        <input type="text" placeholder='Last Name' value='Emenike'/>
+                        <label htmlFor="last_name">Last Name</label>
+                        <input 
+                            name='last_name'
+                            type="text" 
+                            placeholder= {singleUser?.last_name || 'Last Name' }
+                            onChange={handleChange}/>
                     </div>
                     <div className='box-name'>
                         <label htmlFor="">Username</label>
-                        <div>DeathG7n</div>
+                        <div>{singleUser?.user_name}</div>
                     </div>
                     <div className='box-name'>
                         <label htmlFor="">Email</label>
-                        <div>christariccykid55@gmail.com</div>
+                        <div>{singleUser?.email}</div>
                     </div>  
                 </div>
             </section>
             <section className='details'>
                 <div className='box-name'>
                     <label htmlFor="">Mobile</label>
-                    <div>2347064356271</div>
+                    <div>{singleUser?.code}{singleUser?.mobile}</div>
                 </div>
                 <div className='box-name'>
                     <label htmlFor="">Country</label>
-                    <div>Nigeria</div>
+                    <div>{singleUser?.country}</div>
                 </div>  
                 <div className='box-name'>
-                    <label htmlFor="">Address</label>
-                    <input type="text" placeholder='Address'/>
+                    <label htmlFor="address">Address</label>
+                    <input 
+                        name='address'
+                        type="text" 
+                        placeholder={singleUser?.address || 'Address' }
+                        onChange={handleChange}/>
                 </div>
                 <div className='box-name'>
-                    <label htmlFor="">State</label>
-                    <input type="text" placeholder='State'/>
+                    <label htmlFor="state">State</label>
+                    <input 
+                        name='state'
+                        type="text" 
+                        placeholder={singleUser?.state || 'State'}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className='box-name'>
-                    <label htmlFor="">Zip</label>
-                    <input type="text" placeholder='Zip'/>
+                    <label htmlFor="zip">Zip</label>
+                    <input 
+                        name='zip'
+                        type="text" 
+                        placeholder= {singleUser?.zip ||'Zip' }
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className='box-name'>
-                    <label htmlFor="">City</label>
-                    <input type="text" placeholder='City'/>
+                    <label htmlFor="city">City</label>
+                    <input 
+                        name='city'
+                        type="text" 
+                        placeholder={singleUser?.city || 'City'}
+                        onChange={handleChange}
+                    />
                 </div>
             </section>
             <button>Update</button>

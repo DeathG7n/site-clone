@@ -46,16 +46,16 @@ export default function Reason() {
             </div>
             <div>
               <ul>
-                {currencies?.map(curr =>{
+                {currencies?.map((curr, id) =>{
                   return(
-                    <li style={{borderBottom: currency === curr?.toLowerCase()? "none" : ''}} onClick={()=>handleCurrency(curr?.toLowerCase())}>{curr}</li>
+                    <li key={id} style={{borderBottom: currency === curr?.toLowerCase()? "none" : ''}} onClick={()=>handleCurrency(curr?.toLowerCase())}>{curr}</li>
                   )
                 })}
               </ul>
               <div>
                 {item?.map(coin=>{
                   return(
-                    <div>
+                    <div key={coin?.id}>
                       <img src={coin?.image} alt="crypto-coin" />
                       <p>{coin?.name}({coin?.symbol?.toUpperCase()})</p>
                       <p>${coin?.current_price}</p>
