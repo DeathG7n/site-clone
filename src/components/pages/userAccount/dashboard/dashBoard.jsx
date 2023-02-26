@@ -96,9 +96,9 @@ export default function Dashboard() {
                     </tr>
                 </thead>
                 <tbody>
-                    {singleUser?.dashboard?.details?.map(item=>{
+                    {singleUser?.dashboard?.details?.map((item, id)=>{
                         return(
-                            <tr>
+                            <tr key={id}>
                                  <td>{item?.date ? item?.date : singleUser?.createdAt.substring(10,0)}</td>
                                  <td className='id'>{item?.transactionID ? item?.transactionID : singleUser?._id.substring(12).toUpperCase()}</td>
                                  <td>+${item?.amount}</td>
