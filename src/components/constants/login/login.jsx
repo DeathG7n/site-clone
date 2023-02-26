@@ -20,7 +20,7 @@ function Login() {
     
         onSubmit: (values) => {
             const authUser = async ()=>{
-                const res = await axios.post("http://localhost:42353/.netlify/functions/api/auth/login", values).then((res)=>{
+                const res = await axios.post("/.netlify/functions/api/auth/login", values).then((res)=>{
                     console.log(res)
                     history('/user/dashboard')
                     dispatch({ type: "SINGLEUSER", payload: res.data})
