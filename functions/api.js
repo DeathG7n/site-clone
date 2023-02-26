@@ -28,6 +28,10 @@ const database = module.exports = () =>{
 }
 database()
 
+router.get('/', (req, res)=>{
+    res.send("Please work")
+})
+
 //Authentications
 //register
 router.post('/auth/register', async (req, res)=>{
@@ -120,7 +124,7 @@ app.use(express.json())
 app.use(helmet())
 app.use(morgan('common'))
 
-app.use('/.netlify/functions/api', router)
+app.use('/api', router)
 
 
 
