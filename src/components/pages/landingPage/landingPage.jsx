@@ -57,50 +57,56 @@ export default function LandingPage() {
   
   return (
     <>
+        {/* <marquee behavior="" direction="">
+          {crypto}
+        </marquee> */}
         <TopBar/>
-        <NavBar/>
+        <NavBar/> 
         <Hero/>
         <Body>
           <Button>
             <div>Previous</div>
             <div>Next</div>
           </Button>
-          <Table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Changes 24h</th>
-                <th>Market CAP</th>
-                <th>Volume</th>
-                <th>Supply</th>
-              </tr>
-              
-            </thead>
-            <tbody>
-              {coins?.map(coin=>{
-                return(
-                  <tr key={coin?.id}>
-                    <td>{coin?.market_cap_rank}</td>
-                    <td>
-                      <div>
-                        <span><img src={coin?.image} alt={coin?.symbol} />({coin?.symbol?.toUpperCase()})</span>
-                        <p>{coin?.name}</p>
-                      </div>
-                    </td>
-                    <td>${coin?.current_price}</td>
-                    <td style={{
-                      color: coin?.market_cap_change_percentage_24h?.toString()?.charAt(0) === '-' ? "red" : "green"
-                    }}>{coin?.market_cap_change_percentage_24h?.toString()?.substr(0,4)}%</td>
-                    <td>${coin?.market_cap}</td>
-                    <td>${coin?.total_volume}</td>
-                    <td>{coin?.total_supply || 0}{" "}{coin?.symbol?.toUpperCase()}</td>
-                  </tr>
-                  )
-              })}
-            </tbody>
-          </Table>
+          <div className='table'>
+            <Table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Changes 24h</th>
+                  <th>Market CAP</th>
+                  <th>Volume</th>
+                  <th>Supply</th>
+                </tr>
+                
+              </thead>
+              <tbody>
+                {coins?.map(coin=>{
+                  return(
+                    <tr key={coin?.id}>
+                      <td>{coin?.market_cap_rank}</td>
+                      <td>
+                        <div>
+                          <span><img src={coin?.image} alt={coin?.symbol} />({coin?.symbol?.toUpperCase()})</span>
+                          <p>{coin?.name}</p>
+                        </div>
+                      </td>
+                      <td>${coin?.current_price}</td>
+                      <td style={{
+                        color: coin?.market_cap_change_percentage_24h?.toString()?.charAt(0) === '-' ? "red" : "green"
+                      }}>{coin?.market_cap_change_percentage_24h?.toString()?.substr(0,4)}%</td>
+                      <td>${coin?.market_cap}</td>
+                      <td>${coin?.total_volume}</td>
+                      <td>{coin?.total_supply || 0}{" "}{coin?.symbol?.toUpperCase()}</td>
+                    </tr>
+                    )
+                })}
+              </tbody>
+            </Table>
+          </div>
+        
           <Button>
             <div>Previous</div>
             <div>Next</div>

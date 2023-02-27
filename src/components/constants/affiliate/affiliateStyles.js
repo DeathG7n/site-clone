@@ -20,11 +20,22 @@ export const Affiliates = styled.div`
         justify-content: center;
         gap: 40px;
 
+        @media screen and (max-width: 900px) {
+           flex-direction: column;
+        }
+
         >div:first-child{
             width: 50%;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+
+            @media screen and (max-width: 900px) {
+                width: 90%;
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
             
             div{
                 border-right: 5px solid #f64803;
@@ -38,6 +49,10 @@ export const Affiliates = styled.div`
                 display: flex;
                 align-items: center;
                 padding: 10px;
+
+                @media screen and (max-width: 900px) {
+                    width: 100%;
+                }
             }
         }
 
@@ -46,6 +61,10 @@ export const Affiliates = styled.div`
     
             img{
                 width: 100%;
+            }
+
+            @media screen and (max-width: 900px) {
+                width: 90%;
             }
         }
 

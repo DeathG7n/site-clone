@@ -10,6 +10,11 @@ export const Reviews = styled.div`
     flex-direction: column;
     align-items: center;
 
+    @media screen and (max-width: 900px) {
+        width: 100%;
+        margin-left: 0;
+    }
+
     h1{
         font-family: "Acme", Sans-serif;
         margin: 15px 0 30px 0;
@@ -24,6 +29,10 @@ export const Reviews = styled.div`
         box-sizing: border-box;
         scrollbar-width: none;
         padding: 20px 5px;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
 
         section{
             width: 300px;

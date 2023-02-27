@@ -2,8 +2,10 @@ import React from 'react'
 import { Reasons } from './reasonStyles'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import {DataContext} from '../../api/context'
 
 export default function Reason() {
+  const {state: {answer}} = DataContext()
   const [item, setItem] = useState([])
   const [currency, setCurrency] = useState('usd')
   const currencies = ['USD', 'EUR', 'GBP', 'AUD', 'JPY']
@@ -25,24 +27,41 @@ export default function Reason() {
   function handleCurrency(curr){
     setCurrency(curr)
   }
+
+  const reason = [
+    {
+      head: "Constant Development",
+      ans: "The goal of the fund is to develop and become the leader in the investment market. The author’s strategies are used to manage assets and risks."
+    },
+    {
+      head: "Reliability",
+      ans: "All our investor’s funds are safe and backed up, this makes us a risk-free investment company."
+    },
+    {
+      head: "Legitimacy",
+      ans: "We are officially/Fully registered in USA and has official certificate Regulated by Finra."
+    },
+    {
+      head: "Protection",
+      ans: "We provide security of deposits and personal information of user’s account, including DDOS-attacks protection."
+    },
+
+  ]
   return (
     <Reasons>
             <div>
               <h1>Why fundtrex?</h1>
               <ul>
-                <li>Constant Development
-                </li>
-                <li>Reliability
-                  {/* <div>All our investor’s funds are safe and backed up, this makes us a risk-free investment company.</div> */}
-                </li>
-                <li>Legitimacy
-                  {/* <div>We are officially/Fully registered in USA and has official certificate Regulated by Finra. .</div> */}
-                </li>
-                <li>Protection
-                  {/* <div>We provide security of deposits and personal information of user’s account, including DDOS-attacks protection.</div> */}
-                </li>
+                {reason.map((r, id)=>{
+                  return(
+                    <Card r={r} key={id}/>
+                  )
+                })}
+                <div className='answer'>
+                  {answer}
+                </div>
               </ul>
-              <div>The goal of the fund is to develop and become the leader in the investment market. The author’s strategies are used to manage assets and risks.</div>
+              
             </div>
             <div>
               <ul>
@@ -68,5 +87,27 @@ export default function Reason() {
                   </div>
             </div>
           </Reasons>
+  )
+}
+
+export const Card = ({r}) =>{
+  const {dispatch} = DataContext()
+  const [show, setShow] = useState(false)
+  const [screenWidth, setScreenWith] = useState(false);
+  
+  function handleAnswer(ans){
+    dispatch({type: "ANS", payload: ans})
+    setShow(!show)
+    if(window.innerWidth < 900){
+      setScreenWith(true)
+    } else{
+      setScreenWith(false)
+    }
+  }
+  return(
+    <li onClick={()=>handleAnswer(r.ans)}>
+      <p style={{color: show ? "#f64803" : "#000"}}>{r.head}</p>
+      {screenWidth && <div className='ans' style={{display: show ? "block" : "none"}}>{r.ans}</div>}
+    </li>
   )
 }

@@ -60,7 +60,7 @@ export const Contacts = styled.div`
 
         .fullname{
             justify-content: space-between;
-            align-items: flex-end;;
+            align-items: flex-end;
             width: 100%;
 
             h5{
@@ -73,7 +73,7 @@ export const Contacts = styled.div`
                 width: 47%;
             }
 
-            .first{
+            .first, .last{
                 display: flex;
                 flex-direction: column;
                 gap: 5px;

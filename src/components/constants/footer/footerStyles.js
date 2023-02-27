@@ -9,10 +9,19 @@ export const Footers = styled.div`
     color: #fff;
     margin-top: 40px;
 
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        padding: 20px;
+    }
+
     div{
         display: flex;
         flex-direction: column;
         width: 23%;
+
+        @media screen and (max-width: 900px) {
+            width: 90%;
+        }
 
         h4{
             font-size: 17px;
@@ -51,27 +60,6 @@ export const Footers = styled.div`
             line-height: 20px;
         }
     }
-    // ~div{
-    //     width: 100%;
-    //     height: 100px;
-    //     display: flex;
-    //     flex-direction: column;
-    //     position: relative;
-    //     img{
-    //         width: 50px;
-    //     }
-    //     h1{
-    //         font-family: 'Acme', sans-serif;
-    //         display: flex;
-    //         gap: 20px;
-    //         color: #428b0d;
-    //     }
-    //     h1:last-child{
-    //         position: absolute;
-    //         top: 40px;
-    //         left: 120px;
-    //     }
-    // }
     ~ section{
         width: 100%;
         padding: 20px 0 20px 450px;
@@ -81,5 +69,12 @@ export const Footers = styled.div`
         color: #fff;
         font-size: 12px;
         font-family: 'Poppins', sans-serif;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            gap: 0;
+            padding: 20px;
+            text-align: center;
+        }
     }
 `

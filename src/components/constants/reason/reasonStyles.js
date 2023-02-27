@@ -6,11 +6,21 @@ export const Reasons = styled.div`
     align-items: center;
     gap: 50px;
     margin-top: 80px;
+    margin-bottom: 100px;
     position: relative;
+
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
+    }
     
 
     >div:first-child{
         width: 45%;
+
+        @media screen and (max-width: 900px) {
+            width: 90%;
+        }
 
         h1{
             font-family: "Acme", Sans-serif;
@@ -22,6 +32,20 @@ export const Reasons = styled.div`
             width: 100%;
             display: flex;
             position: relative;
+
+            @media screen and (max-width: 900px) {
+                flex-direction: column;
+            }
+            .answer{
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+
+                @media screen and (max-width: 900px) {
+                    display: none;
+                }
+            }
         }
         li{
             border: 1px solid #f64803;
@@ -31,15 +55,31 @@ export const Reasons = styled.div`
             align-items: center;
             font-size: 17px;
             width: 150px;
-            text-decoration: underline;
             color: #15386F;
             font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            position: relative;
 
-            :hover div{
-                display: block;
+            p{
+                text-decoration: underline;
             }
-            div:first-child{
-                display: block;
+
+            @media screen and (max-width: 900px) {
+                width: 100%;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ans{
+                display: none;
+                width: 100%;
+                border: none;
+                text-decoration: none;
+                color: 
+
+                @media screen and (max-width: 900px) {
+                    
+                }
             }
         }
         div{
@@ -58,6 +98,10 @@ export const Reasons = styled.div`
         width: 45%;
         font-family: 'Poppins', sans-serif;
 
+        @media screen and (max-width: 900px) {
+            width: 90%;
+        }
+
         ul{
             list-style-type: none;
             width: 100%;
@@ -70,11 +114,21 @@ export const Reasons = styled.div`
             padding: 5px 30px;
             background-color: #cb3e06;
             cursor: pointer;
+
+            @media screen and (max-width: 900px) {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
         }
         div{
             border: 1px solid rgba(34, 34, 34, 0.3);
             border-top: none;
             width: 528px;
+
+            @media screen and (max-width: 900px) {
+                width: 100%;
+            }
+
 
             div{
                 width: 100%;

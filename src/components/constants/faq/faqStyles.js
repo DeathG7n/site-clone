@@ -11,6 +11,10 @@ export const Faqs = styled.div`
         justify-content: center;
         gap: 15px;
         width: 100%;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
     }
     section{
         width: 45%;
@@ -19,6 +23,12 @@ export const Faqs = styled.div`
         flex-wrap: wrap;
         gap: 15px;
 
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+        }
+
         div{
             width: 100%;
             padding: 20px;
@@ -26,6 +36,11 @@ export const Faqs = styled.div`
             flex-direction: column;
             box-shadow: 0px 0px 15px -5px #000000;
             font-family: 'Poppins', sans-serif;
+
+            @media screen and (max-width: 900px) {
+                width: 95%;
+                padding: 10px;
+            }
             
             p{
                 font-size: 16px;

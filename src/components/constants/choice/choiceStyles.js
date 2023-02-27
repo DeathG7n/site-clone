@@ -21,6 +21,11 @@ export const Choices = styled.div`
         grid-gap: 10px;
         padding: 30px 30px 20px 30px;
         justify-content: center;
+
+        @media screen and (max-width: 900px) {
+            display: flex;
+            flex-direction: column;
+        }
         
         div{
             padding: 180px 20px 0 15px;

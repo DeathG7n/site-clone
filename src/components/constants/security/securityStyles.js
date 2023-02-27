@@ -5,10 +5,30 @@ export const Securit = styled.div`
     justify-content: center;
     gap: 50px;
 
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
+    }
+    >div:first-child{
+        width: 45%;
+
+        img{
+            width: 100%;
+        }
+
+        @media screen and (max-width: 900px) {
+            width: 90%;
+        }
+    }
+
     > div:last-child{
         width: 45%;
         display: flex;
         flex-direction: column;
+
+        @media screen and (max-width: 900px) {
+            width: 90%;
+        }
 
         h1{
             font-family: "Acme", Sans-serif;

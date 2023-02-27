@@ -11,6 +11,11 @@ export const Container = styled.div`
         font-family: 'Roboto', sans-serif;
         padding: 50px 300px 0px 50px;
         color: #f64803;
+
+        @media screen and (max-width: 900px) {
+            font-size: 35px;
+            padding: 20px;
+        }
     }
     p{
         font-size: 21px;
@@ -18,6 +23,11 @@ export const Container = styled.div`
         font-family: 'Poppins', sans-serif;
         padding: 30px 250px 0px 50px;
         margin-bottom: 20px;
+
+        @media screen and (max-width: 900px) {
+            font-size: 16px;
+            padding: 0px 20px;
+        }
     }
     button{
         width: fit-content;
@@ -32,6 +42,15 @@ export const Container = styled.div`
         :hover{
             background-color: darkblue;
         }
+
+        @media screen and (max-width: 900px) {
+            margin-left: 20px;
+        }
+    }
+
+
+    @media screen and (max-width: 900px) {
+        
     }
 `
 
@@ -44,7 +63,7 @@ export const Box = styled.div`
 
     div{
         background-color: #0A0A0ACF;
-        width: 350px;
+        width: 24%;
         border-right: 5px solid #f64803;
         padding: 20px 20px 40px 20px;
         position: relative;
@@ -80,5 +99,14 @@ export const Box = styled.div`
             right: 20px;
             z-index: 2;
         }
+
+        @media screen and (max-width: 900px) {
+            width: 70%;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
     }
 `

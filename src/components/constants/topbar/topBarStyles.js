@@ -10,6 +10,13 @@ export const Container = styled.div`
     gap: 800px;
     font-family: 'Poppins', sans-serif;
 
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        gap: 10px;
+        height: 70px;
+        padding: 5px 0;
+    }
+
     a{
         text-decoration: none;
         color: white;

@@ -4,6 +4,18 @@ export const Body = styled.div`
     margin: 0px 50px 20px 50px;
     padding: 30px 0;
     border: 1px solid #eee;
+
+    .table{
+        @media screen and (max-width: 900px) {
+            width: 100vw;
+            overflow: scroll;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        margin: 0;
+        overflow-x: hidden;
+    }
 `
 
 export const Button = styled.div`
@@ -25,6 +37,14 @@ export const Button = styled.div`
         font-size: 15px;
         font-family: 'Poppins', sans-serif;
         cursor: no-drop;
+
+        @media screen and (max-width: 900px) {
+            width: 45%;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        justify-content: center;
     }
 `
 
@@ -32,7 +52,7 @@ export const Table = styled.table`
     font-family: 'Poppins', sans-serif;
     width: 100%;
     border-collapse: collapse;
-    margin: 0 10px;
+    position: relative;
 
     td, th{
         padding: 12px 5px 12px 5px;
@@ -65,17 +85,33 @@ export const Table = styled.table`
             }
         }
     }
+    th: nth-child(2){
+        @media screen and (max-width: 900px) {
+            position: sticky;
+            left: 10px;
+            background-color: #fff;
+        }
+    }
     tr td:nth-child(2){
         text-align : left;
         width: fit-content;
         border-left: 1px solid #ddd;
         border-right: 2px solid #ddd;
-        // box-shadow: 13px 0px 15px -10px rgb(0 0 0 / 50%);
+        background-color: #fff;
+        
+
+        @media screen and (max-width: 900px) {
+            position: sticky;
+            left: 10px;
+        }
     }
     tbody tr:nth-child(odd){
         background-color: #f5f5f5;
     }
-    
+    @media screen and (max-width: 900px) {
+        margin: 0;
+        overflow-x: scroll;
+    }
     
 `
 export const Box = styled.div`
@@ -132,6 +168,11 @@ export const Box = styled.div`
             color: #fff;
             padding: 0;
         }
+    }
+
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
     }
 `
 

@@ -19,6 +19,11 @@ export const Plans = styled.div`
         justify-content: center;
         gap: 15px;
 
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            align-items: center;
+        }
+
 
         > div{
             width: 270px;
