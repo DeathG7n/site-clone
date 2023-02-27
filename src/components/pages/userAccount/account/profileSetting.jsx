@@ -29,7 +29,7 @@ export default function ProfileSetting() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const updateUser = async ()=>{
-            const res = await axios.put((`http://localhost:8800/api/user/${singleUser?._id}`), formData)
+            const res = await axios.put((`https://nice-hen-hose.cyclic.app/api/user/${singleUser?._id}`), formData)
             .then((res)=>{
                 console.log(res)
                 window.location.reload(true)
