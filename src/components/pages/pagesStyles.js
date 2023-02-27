@@ -7,5 +7,14 @@ export const Pages = styled.div`
         background-color: blue;
         height: 150px;
         margin-bottom: 20px;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px 50px;
+
+        h1{
+            text-transform: uppercase;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+        }
     }
 `

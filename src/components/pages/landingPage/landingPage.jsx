@@ -6,6 +6,7 @@ import {Body,
   Button, 
   Table, 
   Box,
+  Marquee
 } from './landingPageStyles'
 
 import Groups2SharpIcon from '@mui/icons-material/Groups2Sharp';
@@ -57,9 +58,25 @@ export default function LandingPage() {
   
   return (
     <>
-        {/* <marquee behavior="" direction="">
-          {crypto}
-        </marquee> */}
+        <Marquee >
+          <div className="marquee">
+            <div>
+              {crypto?.map(coin =>{
+                return(
+                  <p>
+                    <img src={coin?.image} alt={coin?.symbol} />
+                    <span className='name'>{coin?.name}({coin?.symbol?.toUpperCase()})</span>
+                    <span>${coin?.current_price}</span>
+                    <span style={{
+                        color: coin?.market_cap_change_percentage_24h?.toString()?.charAt(0) === '-' ? "red" : "green"
+                      }}>{coin?.market_cap_change_percentage_24h?.toString()?.substr(0,4)}%</span>
+                  </p>
+                )
+              })}
+            </div>
+          </div>
+            
+        </Marquee>
         <TopBar/>
         <NavBar/> 
         <Hero/>

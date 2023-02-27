@@ -27,8 +27,8 @@ export default function Footer() {
                 <span></span>
                 <ul>
                     <Link style={{ color: "#10221C", textDecoration: "none" }} to="/security"><li>Documents</li></Link>
-                    <li>Terms and Conditions</li>
-                    <li>Privacy Policy</li>
+                    <Link style={{ color: "#10221C", textDecoration: "none" }} to="/terms-and-conditions"><li>Terms and Conditions</li></Link>
+                    <Link style={{ color: "#10221C", textDecoration: "none" }} to="/privacy-policy"><li>Privacy Policy</li></Link>
                     <Link style={{ color: "#10221C", textDecoration: "none" }} to="/contact"><li>Contact Us</li></Link>
                 </ul>
             </div>
@@ -38,8 +38,8 @@ export default function Footer() {
                 <ul>
                     <Link style={{ color: "#10221C", textDecoration: "none" }} to="/login"><li>Login</li></Link>
                     <Link style={{ color: "#10221C", textDecoration: "none" }} to="/sign-up"><li>Register</li></Link>
-                    <li>Investment Plans</li>
-                    <li>Home</li>
+                    <Link style={{ color: "#10221C", textDecoration: "none" }} to="/plans"><li>Investment Plans</li></Link>
+                    <Link style={{ color: "#10221C", textDecoration: "none" }} to="/"><li>Home</li></Link>
                 </ul>
             </div>
         </Footers>

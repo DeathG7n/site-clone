@@ -9,16 +9,20 @@ import Plan from '../constants/plans/plans'
 import Contact from '../constants/contact/contact'
 import Footer from '../constants/footer/footer'
 import Security from '../constants/security/security'
+import Privacy from '../constants/privacy/privacy'
+import Terms from '../constants/terms/terms'
 import { Body } from './landingPage/landingPageStyles'
 
 
 export default function Page() {
+  const location = useLocation()
+  console.log()
   return (
     <Pages>
         <TopBar/>
         <NavBar/>
         <div className='label'>
-
+            <h1>{location.pathname.substring(1)}</h1>
         </div>
         <Body>
             <Routes>
@@ -27,6 +31,8 @@ export default function Page() {
                 <Route path='plans' element={<Plan/>} />
                 <Route path='contact' element={<Contact/>} />
                 <Route path='security' element={<Security/>} />
+                <Route path='privacy-policy' element={<Privacy/>} />
+                <Route path='terms-and-conditions' element={<Terms/>} />
             </Routes>
         </Body>
         

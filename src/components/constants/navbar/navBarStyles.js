@@ -41,7 +41,7 @@ export const Container = styled.div`
             }
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 800px) {
             display: none;
             flex-direction: column;
             width: 100%;
@@ -62,6 +62,10 @@ export const Container = styled.div`
         position: absolute;
         right: 10px;
         top: 10px;
+
+        :active{
+            background-color: #f64803;
+        }
 
         @media screen and (max-width: 900px) {
             display: flex;

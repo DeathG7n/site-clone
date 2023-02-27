@@ -1,5 +1,52 @@
 import styled from "styled-components";
 
+export const Marquee = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 0;
+
+    z-index: 200;
+
+    .marquee{
+        width: 100%;
+        background-color: #f64803;
+        white-space: nowrap;
+        overflow: hidden;
+
+        div{
+            color: #000;
+            padding: 10px 0;
+            animation: animate 150s linear infinite;
+            padding-left: 10%;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            p{
+                font-family: 'Poppins', sans-serif;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                img{
+                    width: 20px;
+                }
+
+                .name{
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    @keyframes animate{
+        100%{
+            transform : translate(-100%, 0)
+        }
+    }
+
+`
 export const Body = styled.div`
     margin: 0px 50px 20px 50px;
     padding: 30px 0;
