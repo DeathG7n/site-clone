@@ -27,7 +27,7 @@ export default function UserAccount() {
   }
   useEffect(()=>{
     const getUser = async ()=>{
-        const res = await axios.get(`/.netlify/functions/api/user/${userId}`).then((res)=>{
+        const res = await axios.get(`https://nice-hen-hose.cyclic.app/api/user/${userId}`).then((res)=>{
             dispatch({type: "SINGLEUSER", payload: res.data})
         })
     }
