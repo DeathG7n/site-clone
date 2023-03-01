@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState}from 'react'
 import {Topbar, Form, Footer, Container, ErrorText} from './loginStyles'
 import Logo from '../../assets/logo.png'
 import {Link, useNavigate} from "react-router-dom";
@@ -6,8 +6,10 @@ import { useFormik } from 'formik';
 import { loginValidationSchema } from '../validationSchema';
 import axios from 'axios';
 import { DataContext } from '../../api/context';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 function Login() {
+    const [show, setShow] = useState()
     const history = useNavigate()
     const {dispatch} = DataContext()
     const { values, handleChange, errors, touched, handleSubmit, handleBlur } = useFormik({
@@ -39,6 +41,14 @@ function Login() {
             <Link style={{ color: "#10221C", textDecoration: "none" }} to="/plans"><li>Plan</li></Link>
             <Link style={{ color: "#10221C", textDecoration: "none" }} to="/contact"><li>Contact</li></Link>
         </ul>
+        {window.innerWidth < 900 && <ul style={{display: show? "block" : "none"}}>
+            <Link style={{ color: "#10221C", textDecoration: "none" }} to="/"><li>Home</li></Link>
+            <Link style={{ color: "#10221C", textDecoration: "none" }} to="/plans"><li>Plan</li></Link>
+            <Link style={{ color: "#10221C", textDecoration: "none" }} to="/contact"><li>Contact</li></Link>
+        </ul>}
+        <div className='menu'>
+            <MenuOpenIcon sx={{color: "#fff", fontSize: "25px"}} onClick={()=>setShow(!show)} />
+        </div>
         </Topbar>
         <Form onSubmit={handleSubmit}>
             <div className='header'>

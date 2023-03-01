@@ -5,7 +5,7 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 20px;
 
-    p{
+    p{ 
         color: #fff;
     }
     .link{
@@ -20,6 +20,11 @@ export const Container = styled.div`
         font-size: 18px;
         border-radius: 2px;
 
+        @media screen and (max-width: 900px) {
+            font-size: 12px;
+            padding-left: 5px;
+        }
+
         span{
             width: 3%;
             height: 100%;
@@ -27,12 +32,21 @@ export const Container = styled.div`
             justify-content: center;
             align-items: center;
             background-color: #f64803;
+
+            @media screen and (max-width: 900px) {
+                width: 8%;
+            }
         }
     }
     section{
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            align-items: center;
+        }
 
         p{
             color: #000;
@@ -45,6 +59,10 @@ export const Container = styled.div`
             border-radius: 10px;
             background-color: #f64803;
             margin-bottom: 30px;
+
+            @media screen and (max-width: 900px) {
+                width: 90%;
+            }
 
             .value{
                 width: 75%;
@@ -111,8 +129,44 @@ export const Container = styled.div`
                 font-size: 14px;
                 width: fit-content;
                 padding: 2px 5px;
-                background-color: light-blue;
+                background-color: #00adff;
                 border-radius: 5px;
+            }
+        }
+        main{
+            width: 90%;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px 0;
+            background-color: #101113;
+
+            p{
+                padding: 10px 20px;
+                font-size: 12px;
+                display: flex;
+                justify-content: space-between;
+                border-top: 1px solid #3e3e3e;
+                color: #fff;
+
+                .id{
+                    color: #0000ff;
+                }
+
+                span{
+                    .wallet{
+                        width: fit-content;
+                        padding: 2px 5px;
+                        background-color: #08b7bf;
+                        border-radius: 5px;
+                    }
+                }
+
+                
+            }
+            p:first-child{
+                border-top: none;
             }
         }
     }

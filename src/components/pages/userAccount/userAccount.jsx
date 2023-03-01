@@ -16,8 +16,10 @@ import ChangePassword from './account/changePassword.jsx';
 import axios from 'axios';
 import DepositModal from './deposit/modal/modal';
 import WithdrawModal from './withdraw/modal/modal'
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 export default function UserAccount() {
+    const [show, setShow] = useState(false)
     const userId = localStorage.getItem('userId')
     const [depositModal, setDepositModal] = useState(false)
     const [withdrawModal, setWithdrawModal] = useState(false)
@@ -76,6 +78,39 @@ export default function UserAccount() {
                     </div>
                 </li>
             </ul>
+            {window.innerWidth < 900 && <ul style={{display: show? "block" : "none"}}>
+                <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/dashboard"><li onClick={()=> handleClick('Dashboard')}>Dashboard</li></Link>
+                <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/investment"><li onClick={()=> handleClick('Investment Plan')}>Investment</li></Link>
+                <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/deposit"><li onClick={()=> handleClick('Deposit Methods')}>Deposit</li></Link>
+                <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/withdraw"><li onClick={()=> handleClick('Withdraw Money')}>Withdraw</li></Link>
+                <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/transactions/deposit-wallet"><li onClick={()=> handleClick('Deposit Wallet Transactions')}>Transactions</li></Link>
+                <li> 
+                    Referrals
+                    <div className='dropDown'>
+                        <ol>
+                            <Link style={{ color: "#10221C", textDecoration: "none",}} to="/user/referral/users"><li onClick={()=> handleClick('My Referred Users')}>Referred Users</li></Link>
+                            <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/referral/commissions/deposit"><li onClick={()=> handleClick('Deposit Referral Commissions')}>Referral Commissions</li></Link>
+                        </ol>
+                    </div>
+                </li>
+                <li>
+                    Account
+                    <div className='dropDown'>
+                        <ol>
+                            <Link style={{ color: "#10221C", textDecoration: "none",}} to="/user/profile-setting"><li onClick={()=> handleClick('Profile Setting')}>Profile Setting</li></Link>
+                            <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/transfer-balance"><li onClick={()=> handleClick('Transfer Balance')}>Transfer Balance</li></Link>
+                            <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/change-password"><li onClick={()=> handleClick('Change Password')}>Change Password</li></Link>
+                            <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/support-ticket"><li onClick={()=> handleClick('Support Ticket')}>Support Ticket</li></Link>
+                            <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/promotional-tool"><li onClick={()=> handleClick('Promotional Tool')}>Promotional Tool</li></Link>
+                            <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/2fa-security"><li onClick={()=> handleClick('2FA Security')}>2FA Security</li></Link>
+                            <li>Logout</li>
+                        </ol>
+                    </div>
+                </li>
+            </ul>}
+      <div className='menu'>
+        <MenuOpenIcon sx={{color: "#000", fontSize: "25px"}} onClick={()=>setShow(!show)} />
+      </div>
         </TopBar>
         <Hero>
             <h1>{heading || 'Dashboard'}</h1>

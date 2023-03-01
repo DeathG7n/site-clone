@@ -38,12 +38,36 @@ export const TopBar = styled.div`
         font-size: 16px;
         gap: 30px;
 
+        @media screen and (max-width: 800px) {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            border: 1px solid;
+            justify-content: center;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: #fff;
+            color: #000;
+        }
+
         li{
             color: #fff;
             transition: all linear 0.2s;
             position: relative;
             height: 50px;
             margin-top: 30px;
+
+            @media screen and (max-width: 900px) {
+                display: flex;
+                align-items: center;
+                padding: 10px 20px;
+                border-bottom: 1px solid #555;
+                font-size: 12px;
+                color: #000;
+                height: auto;
+                margin-top: 0;
+            }
             :hover{
                 color: #f64803;
             }
@@ -86,6 +110,26 @@ export const TopBar = styled.div`
         }
     }
 
+    .menu{
+        display: none;
+        background-color: #fff;
+        padding: 10px 10px;
+        border-radius: 5px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        :active{
+            background-color: #f64803;
+        }
+
+        @media screen and (max-width: 900px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
 `
 
 export const Hero = styled.div`
@@ -111,18 +155,20 @@ export const Hero = styled.div`
 export const Body = styled.div`
     margin: 0px 50px 20px 50px;
     padding: 30px 0;
+
+    @media screen and (max-width: 900px) {
+        margin: 20px;
+    }
 `
 export const Footer = styled.div`
-    margin-top: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
     height: 200px;
-    gap: 80px;
+    gap: 30px;
     background-image: linear-gradient(to right, rgb(0,0,0), rgba(0,0,0,0.5));
-
     div{
         width: 100%;
         display: flex;
@@ -132,6 +178,10 @@ export const Footer = styled.div`
 
         img{ 
             width: 300px;
+
+            @media screen and (max-width: 900px) {
+                margin-left: 120px;
+            }
         }
         ul{
             list-style-type: none;
@@ -145,7 +195,16 @@ export const Footer = styled.div`
                 font-family: "Josefin Sans", sans-serif;
                 font-size: 20px;
                 cursor: pointer;
+
+                @media screen and (max-width: 900px) {
+                    font-size: 14px
+                }
             }
+
+            @media screen and (max-width: 900px) {
+                width: 90%;
+            }
+            
         }
     }
     

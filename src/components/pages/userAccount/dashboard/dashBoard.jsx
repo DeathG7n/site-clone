@@ -84,7 +84,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-            <table>
+            {window.innerWidth > 900 && <table>
                 <thead>
                     <tr>
                         <td>Date</td>
@@ -109,7 +109,21 @@ export default function Dashboard() {
                         )
                     })}
                 </tbody>
-            </table>
+            </table>}
+            {window.innerWidth < 900 && <main>
+                {singleUser?.dashboard?.details?.map((item, id)=>{
+                    return(
+                        <div key={id}>
+                             <p><span>Date</span><span>{item?.date ? item?.date : singleUser?.createdAt.substring(10,0)}</span></p>
+                             <p><span>Transaction ID</span><span className='id'>{item?.transactionID ? item?.transactionID : singleUser?._id.substring(12).toUpperCase()}</span></p>
+                             <p><span>Amount</span><span>+${item?.amount}</span></p>
+                             <p><span>Wallet</span><span><div className='wallet'>{item?.wallet}</div></span></p>
+                             <p><span>Details</span><span>{item?.desc}</span></p>
+                             <p><span>Post Balance</span><span>{item?.postBalance}</span></p>
+                        </div>
+                        )
+                    })}
+            </main>}
         </section>
     </Container>
   )

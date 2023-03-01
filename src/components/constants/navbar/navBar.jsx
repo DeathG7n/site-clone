@@ -26,7 +26,7 @@ function NavBar() {
         <Link style={{ color: "#10221C", textDecoration: "none" }} to="/contact"><li>Contact Us</li></Link>
         <Link style={{ color: "#10221C", textDecoration: "none" }} to="/sign-up"><li>Register</li></Link>
         <Link style={{ color: "#10221C", textDecoration: "none" }} to="/login"><li>Login</li></Link>
-      </ul>}
+      </ul>} 
       <div className='menu'>
         <MenuOpenIcon sx={{color: "#fff", fontSize: "25px"}} onClick={()=>setShow(!show)} />
       </div>

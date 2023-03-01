@@ -4,12 +4,10 @@ import Back from '../../assets/back.jpeg'
 
 export const Container = styled.div`
     background-image: url(${Back})
-    // background-repeat: none;
-    // background-size: 1500px 1500px;
 `
 
 export const Topbar = styled.div`
-    width: 100%;
+    width: 100vw;
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -21,6 +19,13 @@ export const Topbar = styled.div`
     background-color: rgba(0,0,0,0.5);
     z-index: 100;
     border-bottom: 1px solid #ddd;
+    position: relative;
+
+    @media screen and (max-width: 900px) {
+        justify-content: flex-start;
+        padding: 0 20px;
+        height: 60px;
+    }
 
     ul{
         width: 60%;
@@ -36,6 +41,45 @@ export const Topbar = styled.div`
             :hover{
                 color: #f64803;
             }
+
+            @media screen and (max-width: 900px) {
+                padding: 10px 20px;
+                border-bottom: 1px solid #555;
+                font-size: 12px;
+                color: #000;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            border: 1px solid;
+            justify-content: center;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: #fff;
+            color: #000;
+        }
+    }
+    .menu{
+        display: none;
+        background-color: #000;
+        padding: 10px 10px;
+        border-radius: 5px;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+
+        :active{
+            background-color: #f64803;
+        }
+
+        @media screen and (max-width: 900px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
@@ -48,6 +92,11 @@ export const Form = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #555;
+
+    @media screen and (max-width: 900px) {
+        width: 90%;
+    }
+
     .header{
         width: 100%;
         border-bottom: 2px solid #f64803;
@@ -137,16 +186,14 @@ export const ErrorText = styled.span`
 `
 
 export const Footer = styled.div`
-    margin-top: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
     height: 200px;
-    gap: 80px;
+    gap: 30px;
     background-image: linear-gradient(to right, rgb(0,0,0), rgba(0,0,0,0.5));
-
     div{
         width: 100%;
         display: flex;
@@ -156,6 +203,10 @@ export const Footer = styled.div`
 
         img{ 
             width: 300px;
+
+            @media screen and (max-width: 900px) {
+                margin-left: 120px;
+            }
         }
         ul{
             list-style-type: none;
@@ -169,7 +220,16 @@ export const Footer = styled.div`
                 font-family: "Josefin Sans", sans-serif;
                 font-size: 20px;
                 cursor: pointer;
+
+                @media screen and (max-width: 900px) {
+                    font-size: 14px
+                }
             }
+
+            @media screen and (max-width: 900px) {
+                width: 90%;
+            }
+            
         }
     }
     

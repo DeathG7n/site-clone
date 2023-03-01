@@ -6,8 +6,10 @@ import { useFormik } from 'formik';
 import { signUpValidationSchema } from "../../constants/validationSchema";
 import axios from 'axios';
 import { countries, codes } from '../../api/countries';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 function Register() {
+    const [show, setShow] = useState()
     const history = useNavigate()
     const [countryCode, setCountryCode] = useState({
         phone_code: 93
@@ -53,6 +55,14 @@ function Register() {
             <Link style={{ color: "#10221C", textDecoration: "none" }} to="/plans"><li>Plan</li></Link>
             <Link style={{ color: "#10221C", textDecoration: "none" }} to="/contact"><li>Contact</li></Link>
         </ul>
+        {window.innerWidth < 900 && <ul style={{display: show? "block" : "none"}}>
+            <Link style={{ color: "#10221C", textDecoration: "none" }} to="/"><li>Home</li></Link>
+            <Link style={{ color: "#10221C", textDecoration: "none" }} to="/plans"><li>Plan</li></Link>
+            <Link style={{ color: "#10221C", textDecoration: "none" }} to="/contact"><li>Contact</li></Link>
+        </ul>}
+        <div className='menu'>
+            <MenuOpenIcon sx={{color: "#fff", fontSize: "25px"}} onClick={()=>setShow(!show)} />
+        </div>
         </Topbar>
         <Form onSubmit={handleSubmit}>
             <div className='header'>
