@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {TopBar, Container, Hero, Body, Footer} from './userAccountStyles.js'
 import Logo from '../../assets/logo.png'
-import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import HouseIcon from '@mui/icons-material/House';
 import Dashboard from './dashboard/dashBoard'
 import Investment from './investment/investment.jsx';
@@ -20,8 +20,10 @@ import WithdrawModal from './withdraw/modal/modal'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ProtectedRoutes from '../../constants/protectedRoute.js';
 
 export default function UserAccount() {
+    const history = useNavigate()
     const [show, setShow] = useState(false)
     const [hide, setHide] = useState(false)
     const [conceal, setConceal] = useState(false)
@@ -46,6 +48,9 @@ export default function UserAccount() {
   const handleWithdrawModal = ()=>{
     setWithdrawModal(!withdrawModal)
   }
+
+
+
     
   return (
     <Container>
@@ -125,17 +130,20 @@ export default function UserAccount() {
         </Hero>
         <Body>
             <Routes>
-                <Route path='dashboard' element={<Dashboard/>} />
-                <Route path='investment' element={<Investment/>} />
-                <Route path='deposit' element={<Deposit handleModal={handleDepositModal}/>} />
-                <Route path='withdraw' element={<Withdraw handleModal={handleWithdrawModal}/>} />
-                <Route path='transactions/*' element={<Transaction/>} />
-                <Route path='referral/users' element={<Users/>} />
-                <Route path='referral/commissions/*' element={<Commissions/>} />
-                <Route path='profile-setting' element={<ProfileSetting/>} />
-                <Route path='transfer-balance' element={<TransferBalance />} />
-                <Route path='change-password' element={<ChangePassword/>} />
+                <Route element={<ProtectedRoutes />}>
+                    <Route path='dashboard' element={<Dashboard/>} />
+                    <Route path='investment' element={<Investment/>} />
+                    <Route path='deposit' element={<Deposit handleModal={handleDepositModal}/>} />
+                    <Route path='withdraw' element={<Withdraw handleModal={handleWithdrawModal}/>} />
+                    <Route path='transactions/*' element={<Transaction/>} />
+                    <Route path='referral/users' element={<Users/>} />
+                    <Route path='referral/commissions/*' element={<Commissions/>} />
+                    <Route path='profile-setting' element={<ProfileSetting/>} />
+                    <Route path='transfer-balance' element={<TransferBalance />} />
+                    <Route path='change-password' element={<ChangePassword/>} />
+                </Route>
             </Routes>
+            
         </Body>
         <Footer>
             <div>

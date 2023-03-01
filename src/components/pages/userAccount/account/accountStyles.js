@@ -78,6 +78,10 @@ export const Form = styled.form`
             align-items: center;
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
+
+            @media screen and (max-width: 900px) {
+                width: 20%;
+            }
         }
     }
 
@@ -88,6 +92,10 @@ export const Form = styled.form`
         justify-content: center;
         margin-top: 20px;
         position: relative;
+
+        @media screen and (max-width: 900px) {
+            margin: 20px 0;
+        }
 
         .photo {
             display: none;
@@ -104,6 +112,10 @@ export const Form = styled.form`
             justify-content: center;
             align-items: center;
             background-color: #fff;
+
+            @media screen and (max-width: 900px) {
+                right: -50px;
+            }
         }
 
         label{
@@ -118,6 +130,11 @@ export const Form = styled.form`
         display: flex;
         padding-bottom: 30px;
         justify-content: center;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            align-items: center;
+        }
     }
     .box{
         display: flex;
@@ -138,6 +155,10 @@ export const Form = styled.form`
         flex-wrap: wrap;
         gap: 29px;
 
+        @media screen and (max-width: 900px) {
+            width: 100%;
+        }
+
         label{
             font-size: 14px;
             font-family: "Josefin Sans", sans-serif;
@@ -148,6 +169,10 @@ export const Form = styled.form`
             flex-direction: column;
             width: 48%;
             gap: 10px;
+
+            @media screen and (max-width: 900px) {
+                width: 100%;
+            }
 
             div{
                 display: flex;
@@ -174,6 +199,10 @@ export const Form = styled.form`
         flex-wrap: wrap;
         justify-content: space-between;
 
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
+
         label{
             font-size: 14px;
             font-family: "Josefin Sans", sans-serif;
@@ -185,6 +214,10 @@ export const Form = styled.form`
             flex-direction: column;
             width: 48%;
             gap: 10px;
+
+            @media screen and (max-width: 900px) {
+                width: 100%;
+            }
 
             div{
                 display: flex;

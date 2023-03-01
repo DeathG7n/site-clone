@@ -76,22 +76,22 @@ export default function ProfileSetting() {
                             onChange={handleChange}/>
                     </div>
                     <div className='box-name'>
-                        <label htmlFor="">Username</label>
+                        <label htmlFor="user_name">Username</label>
                         <div>{singleUser?.user_name}</div>
                     </div>
                     <div className='box-name'>
-                        <label htmlFor="">Email</label>
+                        <label htmlFor="email">Email</label>
                         <div>{singleUser?.email}</div>
                     </div>  
                 </div>
             </section>
             <section className='details'>
                 <div className='box-name'>
-                    <label htmlFor="">Mobile</label>
+                    <label htmlFor="mobile">Mobile</label>
                     <div>{singleUser?.code}{singleUser?.mobile}</div>
                 </div>
                 <div className='box-name'>
-                    <label htmlFor="">Country</label>
+                    <label htmlFor="country">Country</label>
                     <div>{singleUser?.country}</div>
                 </div>  
                 <div className='box-name'>

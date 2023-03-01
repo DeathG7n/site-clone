@@ -57,6 +57,7 @@ export const Container = styled.div`
         }
     }
     main{
+        margin-top: 20px;
         width: 90%;
         border-radius: 10px;
         display: flex;
@@ -64,6 +65,7 @@ export const Container = styled.div`
         gap: 5px;
         padding: 5px 0;
         background-color: #101113;
+        align-self: center;
 
         p{
             padding: 10px 20px;

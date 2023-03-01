@@ -4,7 +4,7 @@ import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
 import { DataContext } from '../../../api/context';
 
 export default function Commissions() {
-    const {dispatch} = DataContext()
+    const {dispatch, state: {singleUser}} = DataContext()
     function handleClick(head){
         dispatch({ type: "HEAD", payload: head});
     }
@@ -27,8 +27,10 @@ export default function Commissions() {
 }
 
 export function DepositCommissions(){
+    const {state: {singleUser}} = DataContext()
     return(
-        <table>
+        <>
+        {window.innerWidth > 900 &&<table>
                 <thead>
                     <td>Date</td>
                     <td>From</td>
@@ -47,13 +49,31 @@ export function DepositCommissions(){
                         <td>Post Balance</td>
                     </tr>
                 </tbody>
-            </table>
+        </table>}
+        {window.innerWidth < 900 && <main>
+            {singleUser?.dashboard?.details?.map((item, id)=>{
+                return(
+                    <div key={id}>
+                         <p><span>Date</span><span>{item?.date ? item?.date : singleUser?.createdAt.substring(10,0)}</span></p>
+                         <p><span>Transaction ID</span><span className='id'>{item?.transactionID ? item?.transactionID : singleUser?._id.substring(12).toUpperCase()}</span></p>
+                         <p><span>Amount</span><span>+${item?.amount}</span></p>
+                         <p><span>Wallet</span><span><div className='wallet'>{item?.wallet}</div></span></p>
+                         <p><span>Details</span><span>{item?.desc}</span></p>
+                         <p><span>Post Balance</span><span>{item?.postBalance}</span></p>
+                    </div>
+                    )
+                })}
+        </main>}
+        </>
+        
     )
 }
 
 export function InterestCommissions(){
+    const {state: {singleUser}} = DataContext()
     return(
-        <table>
+        <>
+        {window.innerWidth > 900 && <table>
                 <thead>
                     <td>Date</td>
                     <td>From</td>
@@ -72,13 +92,29 @@ export function InterestCommissions(){
                         <td>Post Balance</td>
                     </tr>
                 </tbody>
-            </table>
-    )
+        </table>}
+        {window.innerWidth < 900 && <main>
+            {singleUser?.dashboard?.details?.map((item, id)=>{
+                return(
+                    <div key={id}>
+                         <p><span>Date</span><span>{item?.date ? item?.date : singleUser?.createdAt.substring(10,0)}</span></p>
+                         <p><span>Transaction ID</span><span className='id'>{item?.transactionID ? item?.transactionID : singleUser?._id.substring(12).toUpperCase()}</span></p>
+                         <p><span>Amount</span><span>+${item?.amount}</span></p>
+                         <p><span>Wallet</span><span><div className='wallet'>{item?.wallet}</div></span></p>
+                         <p><span>Details</span><span>{item?.desc}</span></p>
+                         <p><span>Post Balance</span><span>{item?.postBalance}</span></p>
+                    </div>
+                    )
+                })}
+        </main>}
+        </>)
 }
 
 export function InvestCommissions(){
+    const {state: {singleUser}} = DataContext()
     return(
-        <table>
+        <>
+        {window.innerWidth > 900 &&<table>
                 <thead>
                     <td>Date</td>
                     <td>From</td>
@@ -97,6 +133,21 @@ export function InvestCommissions(){
                         <td>Post Balance</td>
                     </tr>
                 </tbody>
-            </table>
-    )
+        </table>}
+        {window.innerWidth < 900 && <main>
+            {singleUser?.dashboard?.details?.map((item, id)=>{
+                return(
+                    <div key={id}>
+                         <p><span>Date</span><span>{item?.date ? item?.date : singleUser?.createdAt.substring(10,0)}</span></p>
+                         <p><span>Transaction ID</span><span className='id'>{item?.transactionID ? item?.transactionID : singleUser?._id.substring(12).toUpperCase()}</span></p>
+                         <p><span>Amount</span><span>+${item?.amount}</span></p>
+                         <p><span>Wallet</span><span><div className='wallet'>{item?.wallet}</div></span></p>
+                         <p><span>Details</span><span>{item?.desc}</span></p>
+                         <p><span>Post Balance</span><span>{item?.postBalance}</span></p>
+                    </div>
+                    )
+                })}
+        </main>}
+        </>
+        )
 }
