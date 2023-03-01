@@ -12,11 +12,11 @@ export default function Commissions() {
     console.log(location.pathname.substring(27))
   return (
     <Container>
-        <div>   
+        <section>   
             <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/referral/commissions/deposit"><button className='button' style={{backgroundColor: location.pathname.substring(27) === "deposit" ? "rgba(213, 76, 21, 0.5)" : "#f64803"}} onClick={()=> handleClick('Deposit Referral Commissions')}>Deposit Commission</button></Link>
             <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/referral/commissions/interest"><button className='button' style={{backgroundColor: location.pathname.substring(27) === "interest" ? "rgba(213, 76, 21, 0.5)" : "#f64803"}} onClick={()=> handleClick('Interest Referral Commissions')}>Interest Commission</button></Link>
             <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/referral/commissions/invest"><button className='button' style={{backgroundColor: location.pathname.substring(27) === "invest" ? "rgba(213, 76, 21, 0.5)" : "#f64803"}} onClick={()=> handleClick('Invest Referral Commissions')}>Invest Commission</button></Link>
-        </div>
+        </section>
         <Routes>
             <Route path='deposit' element={<DepositCommissions/>} />
             <Route path='interest' element={<InterestCommissions/>} />

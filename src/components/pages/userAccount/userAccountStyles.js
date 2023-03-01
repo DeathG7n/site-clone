@@ -61,6 +61,7 @@ export const TopBar = styled.div`
             @media screen and (max-width: 900px) {
                 display: flex;
                 align-items: center;
+                gap: 250px;
                 padding: 10px 20px;
                 border-bottom: 1px solid #555;
                 font-size: 12px;
@@ -73,8 +74,12 @@ export const TopBar = styled.div`
             }
             :hover .dropDown{
                 display: block;
+                
+                @media screen and (max-width: 900px) {
+                    display: none;
+                }
             }
-            div{
+            .dropDown{
                 display: none;
                 position: absolute;
                 top: 45px;
@@ -83,6 +88,12 @@ export const TopBar = styled.div`
                 border: 1px solid #fff;
                 border-radius: 5px;
                 background-color: #f64803;
+                z-index: 900;
+
+                @media screen and (max-width: 900px) {
+                    left: 0;
+                    width: 100%;
+                }
                 ol{
                     list-style-type: none;
                     display: flex;
@@ -116,7 +127,7 @@ export const TopBar = styled.div`
         padding: 10px 10px;
         border-radius: 5px;
         position: absolute;
-        right: 10px;
+        right: 20px;
         top: 10px;
 
         :active{

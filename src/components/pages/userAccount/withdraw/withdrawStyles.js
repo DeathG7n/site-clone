@@ -9,6 +9,10 @@ export const Container = styled.div`
         background-color: #f64803;
         font-size: 16px;
         margin-left: 1000px;
+
+        @media screen and (max-width: 900px) {
+            padding: 10px;
+        }
     }
     section{
         margin: 30px 0;
@@ -17,6 +21,10 @@ export const Container = styled.div`
         justify-content: center;
         flex-wrap: wrap;
         gap: 30px;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
         
         .box{
             width: 48%;
@@ -25,6 +33,13 @@ export const Container = styled.div`
             border-radius: 5px;
             display: flex;
             box-shadow: -1px -1px 15px -1px #f64803;
+
+            @media screen and (max-width: 900px) {
+                width: 90%;
+                flex-direction: column;
+                gap: 0;
+                height: auto;
+            }
 
             img{
                width: 200px;
@@ -38,6 +53,11 @@ export const Container = styled.div`
                 flex-direction: column;
                 align-self: center;
                 font-size: 18px;
+
+                @media screen and (max-width: 900px) {
+                    width: 90%;
+                    height: auto;
+                }
                 
                 p{
                     height: 25%;
@@ -47,6 +67,10 @@ export const Container = styled.div`
                     border: 1px dashed #f64803;
                     width: 100%;
                     border-collapse: collapse;
+
+                    @media screen and (max-width: 900px) {
+                        padding: 10px;
+                    }
 
                     button{
                         width: 90%;

@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    
+    section{
         display: flex;
         gap: 20px;
         margin-left: 695px;
@@ -13,6 +18,10 @@ export const Container = styled.div`
             border: none;
             background-color: #f64803;
             font-size: 16px;
+        }
+
+        @media screen and (max-width: 900px) {
+            margin-left: 0;
         }
     }
     table{
@@ -42,5 +51,42 @@ export const Container = styled.div`
             border-radius: 10px;
         }
     }
+    main{
+        margin-top: 20px;
+        width: 90%;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 5px 0;
+        background-color: #101113;
+
+        p{
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #3e3e3e;
+            color: #fff;
+
+            .id{
+                color: #0000ff;
+            }
+
+            span{
+                .wallet{
+                    width: fit-content;
+                    padding: 2px 5px;
+                    background-color: #08b7bf;
+                    border-radius: 5px;
+                }
+            }
+        }
+        p:first-child{
+            border-top: none;
+        }
+    }
+}
     
 `

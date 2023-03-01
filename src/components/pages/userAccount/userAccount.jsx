@@ -4,6 +4,7 @@ import Logo from '../../assets/logo.png'
 import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
 import HouseIcon from '@mui/icons-material/House';
 import Dashboard from './dashboard/dashBoard'
+import Investment from './investment/investment.jsx';
 import Deposit from './deposit/deposit.jsx';
 import Withdraw from './withdraw/withdraw.jsx';
 import Transaction from './transactions/transactions.jsx';
@@ -17,9 +18,13 @@ import axios from 'axios';
 import DepositModal from './deposit/modal/modal';
 import WithdrawModal from './withdraw/modal/modal'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 export default function UserAccount() {
     const [show, setShow] = useState(false)
+    const [hide, setHide] = useState(false)
+    const [conceal, setConceal] = useState(false)
     const userId = localStorage.getItem('userId')
     const [depositModal, setDepositModal] = useState(false)
     const [withdrawModal, setWithdrawModal] = useState(false)
@@ -86,16 +91,17 @@ export default function UserAccount() {
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/transactions/deposit-wallet"><li onClick={()=> handleClick('Deposit Wallet Transactions')}>Transactions</li></Link>
                 <li> 
                     Referrals
-                    <div className='dropDown'>
+                    <div className='dropDown' style={{display: conceal? "block" : "none"}}>
                         <ol>
                             <Link style={{ color: "#10221C", textDecoration: "none",}} to="/user/referral/users"><li onClick={()=> handleClick('My Referred Users')}>Referred Users</li></Link>
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/referral/commissions/deposit"><li onClick={()=> handleClick('Deposit Referral Commissions')}>Referral Commissions</li></Link>
                         </ol>
                     </div>
+                    {conceal ? <ArrowDropUpIcon onClick={()=>setConceal(!conceal)}/> : <ArrowDropDownIcon onClick={()=>setConceal(!conceal)}/>}
                 </li>
                 <li>
                     Account
-                    <div className='dropDown'>
+                    <div className='dropDown' style={{display: hide? "block" : "none"}}>
                         <ol>
                             <Link style={{ color: "#10221C", textDecoration: "none",}} to="/user/profile-setting"><li onClick={()=> handleClick('Profile Setting')}>Profile Setting</li></Link>
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/transfer-balance"><li onClick={()=> handleClick('Transfer Balance')}>Transfer Balance</li></Link>
@@ -106,6 +112,7 @@ export default function UserAccount() {
                             <li>Logout</li>
                         </ol>
                     </div>
+                    {hide ? <ArrowDropUpIcon onClick={()=>setHide(!hide)}/> : <ArrowDropDownIcon onClick={()=>setHide(!hide)}/>}
                 </li>
             </ul>}
       <div className='menu'>
@@ -119,6 +126,7 @@ export default function UserAccount() {
         <Body>
             <Routes>
                 <Route path='dashboard' element={<Dashboard/>} />
+                <Route path='investment' element={<Investment/>} />
                 <Route path='deposit' element={<Deposit handleModal={handleDepositModal}/>} />
                 <Route path='withdraw' element={<Withdraw handleModal={handleWithdrawModal}/>} />
                 <Route path='transactions/*' element={<Transaction/>} />

@@ -22,6 +22,10 @@ export const Box = styled.div`
     flex-direction: column;
     gap: 20px;
 
+    @media screen and (max-width: 900px) {
+        width: 90%;
+    }
+
     .head{
         padding: 15px 20px;
         border-bottom: 1px solid #fff;
