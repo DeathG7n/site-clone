@@ -7,11 +7,14 @@ import { loginValidationSchema } from '../validationSchema';
 import axios from 'axios';
 import { DataContext } from '../../api/context';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import SpinnerLoader from '../spinnerLoader'
+import SnackBar from '../snackbar'
+import SuccessSnackBar from '../successSnackbar'
 
 function Login() {
     const [show, setShow] = useState()
     const history = useNavigate()
-    const {dispatch} = DataContext()
+    const {dispatch, state: {loading, openSnackBar, snackBarMsg, error}} = DataContext()
     const { values, handleChange, errors, touched, handleSubmit, handleBlur } = useFormik({
         initialValues: {
           user_name: '',
@@ -21,19 +24,32 @@ function Login() {
         validationSchema: loginValidationSchema,
     
         onSubmit: (values) => {
+            dispatch({type: "LOAD", payload: true})
             const authUser = async ()=>{
                 const res = await axios.post("https://nice-hen-hose.cyclic.app/api/auth/login", values).then((res)=>{
                     console.log(res)
                     history('/user/dashboard')
                     dispatch({ type: "SINGLEUSER", payload: res.data})
                     localStorage.setItem("userId", res.data?._id)
-                })
+                    dispatch({type: "LOAD", payload: false})
+                    dispatch({type: "ERROR", payload: false})
+                    dispatch({type: "OPENSNACKBAR", payload: true})
+                    dispatch({type: "SNACKBARMSG", payload: "Login Successful"})
+                }).catch(err => {
+                    dispatch({type: "ERROR", payload: true})
+                    dispatch({type: "OPENSNACKBAR", payload: true})
+                    dispatch({type: "SNACKBARMSG", payload: err?.response?.data})
+                    dispatch({type: "LOAD", payload: false})
+                } 
+            )
             }
             authUser()
         }
       });
   return (
     <Container>
+        {error ? <SnackBar open={openSnackBar} message={snackBarMsg} /> : <SuccessSnackBar open={openSnackBar} message={snackBarMsg} />}
+        {loading && <SpinnerLoader/>}
         <Topbar>
         <img src={Logo} alt="logo" />
         <ul>

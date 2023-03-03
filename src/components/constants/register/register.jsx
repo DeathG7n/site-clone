@@ -7,8 +7,13 @@ import { signUpValidationSchema } from "../../constants/validationSchema";
 import axios from 'axios';
 import { countries, codes } from '../../api/countries';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { DataContext } from '../../api/context';
+import SpinnerLoader from '../spinnerLoader'
+import SnackBar from '../snackbar'
+import SuccessSnackBar from '../successSnackbar'
 
 function Register() {
+    const {dispatch, state: {loading, openSnackBar, snackBarMsg, error}} = DataContext()
     const [show, setShow] = useState()
     const history = useNavigate()
     const [countryCode, setCountryCode] = useState({
@@ -30,13 +35,24 @@ function Register() {
         validationSchema: signUpValidationSchema,
     
         onSubmit: (values) => {
+            dispatch({type: "LOAD", payload: true})
             values.code = countryCode?.phone_code
             console.log(values)
             const createUser = async ()=>{
                 const res = await axios.post("https://nice-hen-hose.cyclic.app/api/auth/register", values).then((res)=>{
                     console.log(res)
                     history('/login')
-                })
+                    dispatch({type: "LOAD", payload: false})
+                    dispatch({type: "ERROR", payload: false})
+                    dispatch({type: "OPENSNACKBAR", payload: true})
+                    dispatch({type: "SNACKBARMSG", payload: res?.data})
+                }).catch(err => {
+                        dispatch({type: "ERROR", payload: true})
+                        dispatch({type: "OPENSNACKBAR", payload: true})
+                        dispatch({type: "SNACKBARMSG", payload: err?.response?.data})
+                        dispatch({type: "LOAD", payload: false})
+                    } 
+                )
             }
             createUser()
         }
@@ -48,6 +64,8 @@ function Register() {
     }
   return (
     <>
+        {error ? <SnackBar open={openSnackBar} message={snackBarMsg} /> : <SuccessSnackBar open={openSnackBar} message={snackBarMsg} />}
+        {loading && <SpinnerLoader/>}
         <Topbar>
         <img src={Logo} alt="logo" />
         <ul>

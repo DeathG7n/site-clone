@@ -7,7 +7,6 @@ import Login from './components/constants/login/login';
 import UserAccount from './components/pages/userAccount/userAccount.jsx'
 import Provider from "./components/api/context";
 function App() {
-  setTimeout(()=> localStorage.clear(), 3600000)
   return (
     <>
       <Provider>

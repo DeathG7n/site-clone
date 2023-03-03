@@ -83,7 +83,10 @@ export default function UserAccount() {
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/support-ticket"><li onClick={()=> handleClick('Support Ticket')}>Support Ticket</li></Link>
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/promotional-tool"><li onClick={()=> handleClick('Promotional Tool')}>Promotional Tool</li></Link>
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/2fa-security"><li onClick={()=> handleClick('2FA Security')}>2FA Security</li></Link>
-                            <li onClick={()=>localStorage.clear()}>Logout</li>
+                            <li onClick={()=>{
+                                localStorage.clear()
+                                history('/')
+                            }}>Logout</li>
                         </ol>
                     </div>
                 </li>
@@ -114,7 +117,10 @@ export default function UserAccount() {
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/support-ticket"><li onClick={()=> handleClick('Support Ticket')}>Support Ticket</li></Link>
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/promotional-tool"><li onClick={()=> handleClick('Promotional Tool')}>Promotional Tool</li></Link>
                             <Link style={{ color: "#10221C", textDecoration: "none", borderTop: "1px dashed #fff" }} to="/user/2fa-security"><li onClick={()=> handleClick('2FA Security')}>2FA Security</li></Link>
-                            <li onClick={()=>localStorage.clear()}>Logout</li>
+                            <li onClick={()=>{
+                                localStorage.clear()
+                                history('/')
+                            }}>Logout</li>
                         </ol>
                     </div>
                     {hide ? <ArrowDropUpIcon onClick={()=>setHide(!hide)}/> : <ArrowDropDownIcon onClick={()=>setHide(!hide)}/>}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {Container} from './dashBoardStyles.js'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import WalletRoundedIcon from '@mui/icons-material/WalletRounded';
@@ -12,11 +12,15 @@ import axios from 'axios'
 
 export default function Dashboard() {
   const {state:{singleUser}} = DataContext()
-  console.log(singleUser)
+  const copyRef = useRef()
+  function myFunction() {
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyRef.current.innerText);
+  }
   return (
     <Container>
         <p>Referral Link</p>
-        <div className='link'>https://fundtrexcooperations.com/register/{singleUser?.user_name} <span><ContentCopyRoundedIcon/></span></div>
+        <div className='link' ref={copyRef}>https://fundtrexcooperations.com/register/{singleUser?.user_name} <span onClick={myFunction}><ContentCopyRoundedIcon/></span></div>
         <section>
             <div className='box'>
                 <div className='value'>
