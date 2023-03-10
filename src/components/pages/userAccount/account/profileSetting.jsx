@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react'
+import React, {useReducer, useRef, } from 'react'
 import {Container, ProfileImg, Form} from './accountStyles'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { DataContext } from '../../../api/context';
@@ -6,6 +6,7 @@ import Placeholder from '../../../assets/image.jpeg'
 import axios from 'axios';
 
 export default function ProfileSetting() {
+    const file = useRef()
     const userId = localStorage.getItem('userId')
     const {state: { singleUser}} = DataContext()
     const formReducer = (state, event) => {
@@ -14,7 +15,7 @@ export default function ProfileSetting() {
           [event.name]: event.value,
         };
       };
-    const [formData, setFormData] = useReducer(formReducer, {userId : userId})
+    const [formData, setFormData] = useReducer(formReducer, {userId : userId, profile_picture: file.current?.files[0]?.name})
 
     const handleChange = (e) => {
         let event = e.target;
@@ -23,7 +24,7 @@ export default function ProfileSetting() {
     
         setFormData({
           name: event.name,
-          value: fileType ? event.files[0] : event.value,
+          value: fileType ? `https://nice-hen-hose.cyclic.app/images/${event.files[0].name}` : event.value,
         });
     };
     const handleSubmit = (event) => {
@@ -31,20 +32,11 @@ export default function ProfileSetting() {
         const updateUser = async ()=>{
             if(formData.profile_picture){
                 const postData = new FormData()
-                const fileName = userId + formData.profile_picture.name
+                const fileName = Date.now() + formData.profile_picture
                 postData.append('userId', userId)
-                postData.append('file', formData.profile_picture)
+                postData.append('file', file.current?.files[0])
                 postData.append('name', fileName)
-                setFormData({
-                    ...formData,
-                    profile_picture: fileName
-                })
-                const res = await axios.post((`https://nice-hen-hose.cyclic.app/api/upload`), postData,
-                {
-                    headers: {
-                      'Content-Type': 'multipart/form-data'
-                    }
-                })
+                const res = await axios.post((`http://localhost:8800/api/upload`), postData)
             }
             const res = await axios.put((`https://nice-hen-hose.cyclic.app/api/user/${singleUser?._id}`), formData)
             .then((res)=>{
@@ -55,7 +47,7 @@ export default function ProfileSetting() {
         updateUser()
     }
 
-    console.log(formData)
+    console.log(singleUser?.profile_picture)
   return (
     <Container>
         <Form onSubmit={handleSubmit}>
@@ -67,10 +59,12 @@ export default function ProfileSetting() {
                         name="profile_picture"
                         id="photo"
                         onChange={handleChange}
+                        ref={file}
                     />
                     <label htmlFor="photo">
                         <ProfileImg 
-                            src={formData.profile_picture ? URL.createObjectURL(formData.profile_picture): singleUser?.profile_picture || Placeholder} 
+                            crossOrigin="anonymous"
+                            src={formData.profile_picture ? URL.createObjectURL(file.current?.files[0]): singleUser?.profile_picture || Placeholder} 
                             alt='profileImg'/>
                         <div className='edit'><EditOutlinedIcon sx={{color: "#555"}}/></div>
                     </label>
