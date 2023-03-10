@@ -171,7 +171,7 @@ function Register() {
                 {touched?.user_name && <ErrorText>{errors?.user_name}</ErrorText>}
                 <label htmlFor="password">Password</label>
                 <input 
-                    type="text" 
+                    type="password" 
                     placeholder='Enter password' 
                     name='password'
                     onChange={handleChange}
@@ -181,7 +181,7 @@ function Register() {
                 {touched?.password && <ErrorText>{errors?.password}</ErrorText>}
                 <label htmlFor="confirm-password">Confirm Password</label>
                 <input 
-                    type="text" 
+                    type="password" 
                     placeholder='Confirm password' 
                     name='confirm_password'
                     onChange={handleChange}

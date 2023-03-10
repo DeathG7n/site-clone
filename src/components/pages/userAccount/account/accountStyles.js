@@ -268,5 +268,6 @@ export const Form = styled.form`
         border: none;
         margin-top: 20px;
         font-family: 'Exo', sans-serif;
+        cursor: pointer;
     }
 `

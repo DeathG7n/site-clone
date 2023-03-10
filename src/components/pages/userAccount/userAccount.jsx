@@ -21,6 +21,8 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ProtectedRoutes from '../../constants/protectedRoute.js';
+import SnackBar from '../../constants/snackbar'
+import SuccessSnackBar from '../../constants/successSnackbar'
 
 export default function UserAccount() {
     const history = useNavigate()
@@ -30,7 +32,7 @@ export default function UserAccount() {
     const userId = localStorage.getItem('userId')
     const [depositModal, setDepositModal] = useState(false)
     const [withdrawModal, setWithdrawModal] = useState(false)
-  const {dispatch, state:{heading}} = DataContext()
+  const {dispatch, state:{heading, singleUser, error, snackBarMsg, openSnackBar}} = DataContext()
   function handleClick(head){
     dispatch({ type: "HEAD", payload: head});
   }
@@ -49,16 +51,23 @@ export default function UserAccount() {
     setWithdrawModal(!withdrawModal)
   }
 
+  console.log(singleUser)
 
+//   document.cookie = "username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+
+//   let x = document.cookie
+//   console.log(x)
 
     
   return (
     <Container>
+        {error ? <SnackBar open={openSnackBar} message={snackBarMsg} /> : <SuccessSnackBar open={openSnackBar} message={snackBarMsg} />}
         {depositModal && <DepositModal handleModal={handleDepositModal}/>}
         {withdrawModal && <WithdrawModal handleModal={handleWithdrawModal}/>}
         <TopBar>
             <Link to='/'><img src={Logo} alt="logo" /></Link>
             <ul>
+                {singleUser?.admin && <Link style={{ color: "#10221C", textDecoration: "none" }} to="/admin"><li onClick={()=> handleClick('Dashboard')}>Admin</li></Link>}
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/dashboard"><li onClick={()=> handleClick('Dashboard')}>Dashboard</li></Link>
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/investment"><li onClick={()=> handleClick('Investment Plan')}>Investment</li></Link>
                 <Link style={{ color: "#10221C", textDecoration: "none" }} to="/user/deposit"><li onClick={()=> handleClick('Deposit Methods')}>Deposit</li></Link>
@@ -139,7 +148,7 @@ export default function UserAccount() {
                 <Route element={<ProtectedRoutes />}>
                     <Route path='dashboard' element={<Dashboard/>} />
                     <Route path='investment' element={<Investment/>} />
-                    <Route path='deposit' element={<Deposit handleModal={handleDepositModal}/>} />
+                    <Route path='deposit/*' element={<Deposit handleModal={handleDepositModal}/>} />
                     <Route path='withdraw' element={<Withdraw handleModal={handleWithdrawModal}/>} />
                     <Route path='transactions/*' element={<Transaction/>} />
                     <Route path='referral/users' element={<Users/>} />

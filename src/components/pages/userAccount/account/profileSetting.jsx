@@ -8,18 +8,18 @@ import axios from 'axios';
 export default function ProfileSetting() {
     const userId = localStorage.getItem('userId')
     const {state: { singleUser}} = DataContext()
-    console.log(singleUser)
     const formReducer = (state, event) => {
         return {
           ...state,
           [event.name]: event.value,
         };
       };
-    const [formData, setFormData] = useReducer(formReducer, {userId : userId })
+    const [formData, setFormData] = useReducer(formReducer, {userId : userId})
 
     const handleChange = (e) => {
         let event = e.target;
         const fileType = event.type === "file";
+
     
         setFormData({
           name: event.name,
@@ -29,14 +29,32 @@ export default function ProfileSetting() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const updateUser = async ()=>{
+            if(formData.profile_picture){
+                const postData = new FormData()
+                const fileName = userId + formData.profile_picture.name
+                postData.append('userId', userId)
+                postData.append('file', formData.profile_picture)
+                postData.append('name', fileName)
+                setFormData({
+                    ...formData,
+                    profile_picture: fileName
+                })
+                const res = await axios.post((`https://nice-hen-hose.cyclic.app/api/upload`), postData,
+                {
+                    headers: {
+                      'Content-Type': 'multipart/form-data'
+                    }
+                })
+            }
             const res = await axios.put((`https://nice-hen-hose.cyclic.app/api/user/${singleUser?._id}`), formData)
             .then((res)=>{
                 console.log(res)
-                window.location.reload(true)
+                // window.location.reload(true)
             })
         }
         updateUser()
     }
+
     console.log(formData)
   return (
     <Container>
@@ -50,7 +68,7 @@ export default function ProfileSetting() {
                         id="photo"
                         onChange={handleChange}
                     />
-                    <label for="photo">
+                    <label htmlFor="photo">
                         <ProfileImg 
                             src={formData.profile_picture ? URL.createObjectURL(formData.profile_picture): singleUser?.profile_picture || Placeholder} 
                             alt='profileImg'/>

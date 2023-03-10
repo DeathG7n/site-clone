@@ -31,6 +31,7 @@ function Login() {
                     history('/user/dashboard')
                     dispatch({ type: "SINGLEUSER", payload: res.data})
                     localStorage.setItem("userId", res.data?._id)
+                    // document.cookie = `userId=${res.data?._id}; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/`
                     dispatch({type: "LOAD", payload: false})
                     dispatch({type: "ERROR", payload: false})
                     dispatch({type: "OPENSNACKBAR", payload: true})
@@ -86,7 +87,7 @@ function Login() {
                 {touched?.user_name && <ErrorText>{errors?.user_name}</ErrorText>}
                 <label htmlFor="password">Password</label>
                 <input 
-                    type="text" 
+                    type="password" 
                     placeholder='Enter password' 
                     name='password'
                     onChange={handleChange}

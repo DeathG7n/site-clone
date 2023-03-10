@@ -10,7 +10,8 @@ import Alen from '../../assets/alen.jpg'
 export default function Review() {
   return (
     <Reviews>
-            <h1>What Clients Say About Us</h1>
+      <div className="box">
+        <h1>What Clients Say About Us</h1>
             <main>
               <section>
                 <span>Professionalism, expertise, and excellent service by the admins made the entire process comfortable and a pleasant experience. 5 STARS to them. I highly recommend this company.
@@ -73,6 +74,8 @@ export default function Review() {
                 <h3>Investor</h3>
               </section>
             </main>
+      </div>
+            
           </Reviews>
   )
 }

@@ -6,7 +6,10 @@ export const initialValues = {
     loading: false,
     openSnackBar: false,
     snackBarMsg: '',
-    error: false
+    error: false,
+    users: null,
+    depositAmount: 0,
+    currentCoin: null,
   };
   
   export const reducer = (state, action) => {
@@ -61,6 +64,24 @@ export const initialValues = {
       return {
         ...state,
         openSnackBar: false
+      };
+    }
+    else if (action.type === "USERS") {
+      return {
+        ...state,
+        users: action?.payload
+      };
+    }
+    else if (action.type === "DEPOSIT") {
+      return {
+        ...state,
+        depositAmount: action?.payload
+      };
+    }
+    else if (action.type === "CURRENT") {
+      return {
+        ...state,
+        currentCoin: action?.payload
       };
     }
     else {

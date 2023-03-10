@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 export default function Hero() {
   return (
     <Container>
+      <div className='box'>
         <h1>Safe And Secure Crypto Currency Mining And Investment</h1>
         <p>Cooperating with us, you receive the opportunities for improvement and development of your own mining and investments skills..</p>
         <button><Link style={{ color: "#fff", textDecoration: "none" }} to="/sign-up">Create an account</Link></button>
@@ -17,7 +18,7 @@ export default function Hero() {
             <p>We provide security of deposits and personal information of user’s account, including DDOS-attacks protection.</p>
             <span style={{top: "55%"}}><SecurityIcon sx={{fontSize: "80px", color: '#4c4c4c'}}/></span>
           </div>
-          <div>
+          <div> 
               <h1><HttpsIcon sx={{fontSize: "40px"}}/>Privacy</h1>
               <p>All our investor’s funds are safe and backed up, this makes Fundtrex a risk-free investment company.</p>
               <span style={{top: "35%"}}><HttpsIcon sx={{fontSize: "80px", color: '#4c4c4c'}}/></span>
@@ -28,6 +29,8 @@ export default function Hero() {
               <span style={{top: "15%"}}><VerifiedIcon sx={{fontSize: "80px", color: '#4c4c4c'}}/></span>
           </div>
         </Box>
+      </div>
+        
         
     </Container>
   )

@@ -78,6 +78,12 @@ export const Box = styled.div`
             border-bottom-right-radius: 5px;
         }
     }
+    h4{
+        font-size: 14px;
+        margin-top: -20px;
+        margin-left: 20px;
+        color: red;
+    }
     .buttons{
         width: 100%;
         display: flex;

@@ -6,6 +6,7 @@ import Register from './components/constants/register/register';
 import Login from './components/constants/login/login';
 import UserAccount from './components/pages/userAccount/userAccount.jsx'
 import Provider from "./components/api/context";
+import Admin from './components/pages/admin/admin';
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
             <Route path='/sign-up' element={<Register/>} />
             <Route path='/login' element={<Login/>} />
             <Route path='/user/*' element={<UserAccount/>} />
+            <Route path='/admin/*' element={<Admin />} />
           </Routes>
       </Router>
       </Provider>

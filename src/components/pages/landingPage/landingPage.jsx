@@ -63,7 +63,7 @@ export default function LandingPage() {
             <div>
               {crypto?.map(coin =>{
                 return(
-                  <p>
+                  <p key={coin?.id}>
                     <img src={coin?.image} alt={coin?.symbol} />
                     <span className='name'>{coin?.name}({coin?.symbol?.toUpperCase()})</span>
                     <span>${coin?.current_price}</span>

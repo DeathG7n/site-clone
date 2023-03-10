@@ -84,3 +84,201 @@ export const Container = styled.div`
         }
     }
 `
+
+export const PreviewContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .preview{
+        width: 60%;
+        border: 1px solid;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+
+        @media screen and (max-width: 900px) {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 900px) {
+            width: 90%;
+            padding: 5px;
+        }
+        div{
+            display: flex;
+            width: 98%;
+            height: 80%;
+            flex-direction: column;
+            align-self: center;
+            font-size: 18px;
+            border: 1px dashed #f64803;
+
+            img{
+                width: 100px;
+                margin: 10px auto;
+            }
+
+            
+            p{
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px dashed #f64803;
+                width: 100%;
+                border-collapse: collapse;
+
+                span{
+                    color: green;
+                }
+
+                @media screen and (max-width: 900px) {
+                    font-size: 14px;
+                    text-align: center;
+                }
+            }
+        }
+        button{
+            width: 98%;
+            height: 45px;
+            border-radius: 5px;
+            border: none;
+            background-color: #f64803;
+            font-size: 16px;
+            margin: 20px 0 0 6px;
+
+            @media screen and (max-width: 900px) {
+                font-size: 14px;
+            }
+        }
+    }
+    .manual{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 60%;
+        border: 1px solid;
+        padding: 10px;
+
+        @media screen and (max-width: 900px) {
+            width: 100%;
+        }
+
+        h2{
+            color: yellow;
+
+            @media screen and (max-width: 900px) {
+                font-size: 13px;
+                text-align: center;
+            }
+        }
+
+        span{
+            text-decoration: underline;
+
+            @media screen and (max-width: 900px) {
+                font-size: 11px;
+                text-align: center;
+            }
+        }
+        h3{
+            @media screen and (max-width: 900px) {
+                font-size: 15px;
+                text-align: center;
+            }
+        }
+        p{
+            span{
+                color: #28a745;
+                text-decoration: none;
+            }
+
+            @media screen and (max-width: 900px) {
+                font-size: 11px;
+                text-align: center;
+            }
+        }
+
+        
+
+
+        @media screen and (max-width: 900px) {
+            width: 90%;
+            padding: 5px;
+        }
+
+        label{
+            font-size: 14px;
+
+            @media screen and (max-width: 900px) {
+                font-size: 11px;
+            }
+        }
+
+        .proof{
+            width: fit-content;
+            padding: 10px 50px 10px 20px;
+            background-color: #17a2b8;
+            border-radius: 5px;
+        }
+        form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        div{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            img{
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            #proof{
+                display: none;
+            }
+
+            input{
+                height: 45px;
+                text-indent: 15px;
+                font-size: 18px;
+                background-color: #000;
+                border: 1px solid #f64803;
+                border-radius: 5px;
+
+                ::placeholder{
+                    font-family: "Exo", sans-serif;
+                }
+
+                @media screen and (max-width: 900px) {
+                    font-size: 15px;
+                }
+
+               
+            }
+        }
+        button{
+            width: 100%;
+            height: 45px;
+            border-radius: 5px;
+            border: none;
+            background-color: #f64803;
+            font-size: 16px;
+
+            @media screen and (max-width: 900px) {
+                font-size: 14px;
+            }
+        }
+    }
+`

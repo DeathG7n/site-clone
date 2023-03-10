@@ -1,16 +1,25 @@
 import styled from "styled-components";
+import background from '../../assets/corporate.jpeg'
 
 export const Container = styled.div`
     width: 100vw;
-    background-color: darkblue;
-    padding-bottom: 30px;
+    background-image: url(${background});
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     z-index: -100;
+
+    .box{
+        width: 100%;
+        height: 100%;
+        background: rgba(31, 26, 69, 0.7);
+        padding-bottom: 30px;
+    }
     
     h1{
         font-size: 69px;
         font-family: 'Roboto', sans-serif;
         padding: 50px 300px 0px 50px;
-        color: #f64803;
+        color: #0000ff;
 
         @media screen and (max-width: 900px) {
             font-size: 35px;
@@ -35,12 +44,12 @@ export const Container = styled.div`
         border-radius: 15px;
         padding: 0 20px;
         margin-left: 50px;
-        border: 2px solid #f64803;
-        background-color: #f64803;
+        border: 2px solid #0000ff;
+        background-color: #0000ff;
         color: #fff;
 
         :hover{
-            background-color: darkblue;
+            background-color: transparent;
         }
 
         @media screen and (max-width: 900px) {
@@ -64,7 +73,7 @@ export const Box = styled.div`
     div{
         background-color: #0A0A0ACF;
         width: 24%;
-        border-right: 5px solid #f64803;
+        border-right: 5px solid #0000ff;
         padding: 20px 20px 40px 20px;
         position: relative;
         z-index: 1;

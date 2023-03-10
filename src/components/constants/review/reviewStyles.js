@@ -1,14 +1,27 @@
 import styled from "styled-components";
+import background from '../../assets/review.jpeg'
 
 export const Reviews = styled.div`
     width: 100vw;
     background-color: blue;
     margin-left: -52px;
     margin-top: 60px;
-    padding: 40px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(${background});
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    .box{
+        width: 100%;
+        height: 100%;
+        background: rgba(31, 26, 69, 0.7);
+        padding: 40px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     @media screen and (max-width: 900px) {
         width: 100%;
@@ -23,7 +36,9 @@ export const Reviews = styled.div`
     main{
         width: 90%;
         display: flex;
-        gap: 50px;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
         overflow: hidden;
         flex-wrap: nowrap;
         box-sizing: border-box;
@@ -35,7 +50,7 @@ export const Reviews = styled.div`
         }
 
         section{
-            width: 300px;
+            width: 23%;
             display: flex;
             flex-direction: column;
             align-items: center;
