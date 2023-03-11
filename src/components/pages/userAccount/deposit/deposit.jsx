@@ -170,10 +170,10 @@ export const DepositManual = ({ handleModal }) => {
     confirmData.append('type', "deposit")
     confirmData.append('proof', file.current?.files[0]?.name)
     console.log(file.current?.files[0], desc.current?.value)
-    if(file.current?.files[0]){
-      const res = await axios.post((`https://nice-hen-hose.cyclic.app/api/upload`), confirmData)
-    }
-    const res = await axios.put(("https://nice-hen-hose.cyclic.app/api/auth/confirm"), confirmData)
+    // if(file.current?.files[0]){
+    //   const res = await axios.post((`https://nice-hen-hose.cyclic.app/api/upload`), confirmData)
+    // }
+    const res = await axios.post(("https://nice-hen-hose.cyclic.app/api/auth/confirm"), confirmData)
   }
 
   return (
@@ -196,7 +196,7 @@ export const DepositManual = ({ handleModal }) => {
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Proof of Payment</label>
-                <img src={URL?.createObjectURL(file.current?.files[0]) || proof} alt="proof" />
+                <img src={(file.current?.files[0] && URL?.createObjectURL(file.current?.files[0])) || proof} alt="proof" />
                 <input type="file" name="proof" id="proof" ref={file}/>
                 <label htmlFor="proof" className="proof">
                     Select Proof of Payment

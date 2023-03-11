@@ -36,7 +36,7 @@ export default function ProfileSetting() {
                 postData.append('userId', userId)
                 postData.append('file', file.current?.files[0])
                 postData.append('name', fileName)
-                const res = await axios.post((`http://localhost:8800/api/upload`), postData)
+                const res = await axios.post((`https://nice-hen-hose.cyclic.app/api/upload`), postData)
             }
             const res = await axios.put((`https://nice-hen-hose.cyclic.app/api/user/${singleUser?._id}`), formData)
             .then((res)=>{
