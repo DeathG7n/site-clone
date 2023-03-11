@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container, PreviewContainer } from "./depositStyles";
 import Bit from "../../../assets/bit.png";
 import Tether from "../../../assets/tether.png";
@@ -140,6 +140,9 @@ export const DepositPreview = () => {
 };
 
 export const DepositManual = ({ handleModal }) => {
+  const file = useRef()
+  const desc = useRef()
+  const userId = localStorage.getItem("userId")
   const {
     state: { coin, depositAmount, currentCoin },
   } = DataContext();
@@ -157,6 +160,21 @@ export const DepositManual = ({ handleModal }) => {
     }
   }, [coin]);
   console.log(depositAmount);
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    const confirmData = new FormData()
+    confirmData.append('userId', userId)
+    confirmData.append('file', file.current?.files[0])
+    confirmData.append('desc', desc.current?.value)
+    confirmData.append('amount', depositAmount)
+    confirmData.append('type', "deposit")
+    confirmData.append('proof', file.current?.files[0]?.name)
+    console.log(file.current?.files[0], desc.current?.value)
+    if(file.current?.files[0]){
+      const res = await axios.post((`https://nice-hen-hose.cyclic.app/api/upload`), confirmData)
+    }
+    const res = await axios.put(("https://nice-hen-hose.cyclic.app/api/auth/confirm"), confirmData)
+  }
 
   return (
     <PreviewContainer>
@@ -175,18 +193,18 @@ export const DepositManual = ({ handleModal }) => {
         </span>
         <h2>TWGmZt9mPkdGTE5HW8eEop7YxVKugLh1FE</h2>
         <p>NETWORK: {img}</p>
-        <form action="">
+        <form onSubmit={handleSubmit}>
             <div>
                 <label>Proof of Payment</label>
-                <img src={proof} alt="proof" />
-                <input type="file" name="proof" id="proof" />
+                <img src={URL?.createObjectURL(file.current?.files[0]) || proof} alt="proof" />
+                <input type="file" name="proof" id="proof" ref={file}/>
                 <label htmlFor="proof" className="proof">
                     Select Proof of Payment
                 </label>
             </div>
             <div>
                 <label htmlFor="memo">MEMO</label>
-                <input type="text" placeholder="MEMO" name="memo" />
+                <input type="text" placeholder="MEMO" name="memo" ref={desc}/>
             </div>
             <button>Pay Now</button>
         </form>

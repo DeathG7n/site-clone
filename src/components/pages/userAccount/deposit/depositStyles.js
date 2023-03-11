@@ -256,6 +256,7 @@ export const PreviewContainer = styled.div`
                 background-color: #000;
                 border: 1px solid #f64803;
                 border-radius: 5px;
+                color: #fff;
 
                 ::placeholder{
                     font-family: "Exo", sans-serif;

@@ -41,7 +41,7 @@ export default function ProfileSetting() {
             const res = await axios.put((`https://nice-hen-hose.cyclic.app/api/user/${singleUser?._id}`), formData)
             .then((res)=>{
                 console.log(res)
-                // window.location.reload(true)
+                window.location.reload(true)
             })
         }
         updateUser()
